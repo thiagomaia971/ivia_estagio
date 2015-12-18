@@ -7,55 +7,46 @@ namespace Core
     {
 
         private int Id { get; set; }
+        private int Protocolo;
         private string Nome;
-        private string TipoDeTratamento;
-        private DateTime DiaDaConsulta;
-        private List<DateTime> ListaDeConsultas;
+        private List<Agendamento> ListaDeConsultas;
         
         public Paciente()
         {
-            DiaDaConsulta = new DateTime();
+            ListaDeConsultas = new List<Agendamento>();
 
-            ListaDeConsultas = new List<DateTime>();
-            //Consultas criadas randomicamente.
-            Mock();
         }
 
-        public Paciente(string Nome, string TipoDeTratamento, DateTime DiaDaConsulta)
+        public Paciente(int Protocolo, string Nome)
         {
+            this.Protocolo = Protocolo;
             this.Nome = Nome;
-            this.TipoDeTratamento = TipoDeTratamento;
-            this.DiaDaConsulta = DiaDaConsulta;
 
-            ListaDeConsultas = new List<DateTime>();
-            //Consultas criadas randomicamente.
-            Mock();
+            ListaDeConsultas = new List<Agendamento>();
+
         }
 
-        private void Mock()
+        public Agendamento UltimoAgendamento()
         {
-            ListaDeConsultas.Add(new DateTime(2015, 11, 01));
-            ListaDeConsultas.Add(new DateTime(2015, 11, 07));
-            ListaDeConsultas.Add(new DateTime(2015, 11, 08));
-            ListaDeConsultas.Add(new DateTime(2015, 11, 09));
-            ListaDeConsultas.Add(new DateTime(2015, 11, 13));
-            ListaDeConsultas.Add(new DateTime(2015, 11, 17));
-            ListaDeConsultas.Add(new DateTime(2015, 12, 16));
-            ListaDeConsultas.Add(new DateTime(2015, 11, 17));
+            Agendamento ag = new Agendamento();
+
+            foreach (var agendamento in ListaDeConsultas)
+            {
+                ag = agendamento;
+            }
+
+            return ag;
         }
 
         //Getters e Setters
 
+        public int getProtocolo() { return Protocolo; }
+
         public string getNome() { return Nome; }
         public void setNome(string Nome) { this.Nome = Nome; }
 
-        public string getTipoDeTratamento() { return TipoDeTratamento; }
-        public void setTipoDeTratamento(string TipoDeTratamento) { this.TipoDeTratamento = TipoDeTratamento; }
-
-        public DateTime getDiaDaConsulta() { return DiaDaConsulta; }
-        public void setDiaDaConsulta(DateTime DiaDaConsulta) { this.DiaDaConsulta = DiaDaConsulta; }
-
-        public List<DateTime> getListaDeConsultas() { return ListaDeConsultas; }
+        public List<Agendamento> getListaDeConsultas() { return ListaDeConsultas; }
+        public void AddConsulta(Agendamento Agendamento) { this.ListaDeConsultas.Add(Agendamento); }
 
     }
 }

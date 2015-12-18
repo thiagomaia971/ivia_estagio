@@ -8,7 +8,85 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest1
     {
+
+
         [TestMethod]
+        public void Como_Atendente_Devo_Ser_Capaz_De_Verificar_Se_Tem_3_Pacientes_Para_Serem_Atendidos_No_Dia_Atual()
+        {
+
+            //Arange
+            RepositorioAgendamento repAgendamento;
+            RepositorioPaciente repPaciente;
+
+            //Act
+            repPaciente = new RepositorioPaciente();
+            repAgendamento = new RepositorioAgendamento(repPaciente);
+
+            //Assert
+            Assert.AreEqual(3, repAgendamento.QuantidadeDePacientesAgendados(DateTime.Today));
+
+        }
+
+        [TestMethod]
+        public void Como_Atendente_Devo_Ser_Capaz_De_Verificar_Se_Tem_0_Pacientes_Para_Serem_Atendidos_No_Dia_Atual()
+        {
+
+            //Arange
+            RepositorioAgendamento repAgendamento;
+            RepositorioPaciente repPaciente;
+
+            //Act
+            repPaciente = new RepositorioPaciente();
+            repAgendamento = new RepositorioAgendamento(repPaciente);
+
+            //Assert
+            Assert.AreEqual(0, repAgendamento.QuantidadeDePacientesAgendados(DateTime.Today));
+
+        }
+
+        [TestMethod]
+        public void Como_Atendente_Devo_Ser_Capaz_De_Registrar_Uma_Consulta_e_Verificar_Se_Tem_1_Paciente_Para_Ser_Atendido_No_Dia_Da_Consulta_Registrada()
+        {
+
+            //Arange
+            RepositorioAgendamento repAgendamento;
+            RepositorioPaciente repPaciente;
+
+            //Act
+            repPaciente = new RepositorioPaciente();
+            repAgendamento = new RepositorioAgendamento(repPaciente);
+            repAgendamento.RegistrarAgendamento(new Agendamento(123948, new DateTime(2015, 12, 18, 12, 30, 0), EnumTipoDeTratamento.Intercorrencia));
+
+            //Assert
+            Assert.AreEqual(1, repAgendamento.QuantidadeDePacientesAgendados(new DateTime(2015, 12, 18, 12, 30, 0)));
+
+        }
+
+        [TestMethod]
+        public void Como_Atendente_Devo_Ser_Capaz_De_Registrar_Uma_Consulta_e_Verificar_Se_Tem_1_Paciente_Para_Ser_Atendido_Pelo_Tipo_Quimioterapia_Dia()
+        {
+
+            //Arange
+            RepositorioAgendamento repAgendamento;
+            RepositorioPaciente repPaciente;
+
+            //Act
+            repPaciente = new RepositorioPaciente();
+            repAgendamento = new RepositorioAgendamento(repPaciente);
+            repAgendamento.RegistrarAgendamento(new Agendamento(123948, new DateTime(2015, 12, 18, 12, 30, 0), EnumTipoDeTratamento.Quimioterapia_Dia));
+
+            //Assert
+            List<Paciente> p = repAgendamento.PacientesAgendadosPeloTipo(EnumTipoDeTratamento.Quimioterapia_Dia);
+            int cont = 0;
+            foreach (var item in p)
+            {
+                cont++;
+            }
+            Assert.AreEqual(1, cont);
+
+        }
+
+        /*[TestMethod]
         public void Como_Atendente_Devo_Ser_Capaz_De_Imprimir_O_Relatório_Quimioterapia_Dia()
         {
 
@@ -111,7 +189,7 @@ namespace UnitTestProject1
 
             CollectionAssert.Equals(ListaEsperada, TodasConsultasDoPaciente);
 
-        }
+        }*/
 
     }
 }
