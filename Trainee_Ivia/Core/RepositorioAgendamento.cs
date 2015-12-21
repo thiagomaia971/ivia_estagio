@@ -27,19 +27,23 @@ namespace Core
             return Agendamentos;
         }
 
-        public void RegistrarAgendamento(Agendamento Agendamento)
+        public bool RegistrarAgendamento(Agendamento Agendamento)
         {
+
             if (repPaciente.PacienteExiste(Agendamento.Protocolo))
             {
 
-                DateTime diaAtual = DateTime.Today;
+                DateTime diaAtual = DateTime.Now;
 
-                if (diaAtual.Day >= Agendamento.DiaAgendado.Day && diaAtual.Month >= Agendamento.DiaAgendado.Month && diaAtual.Year >= Agendamento.DiaAgendado.Year)
+                if (Agendamento.DiaAgendado.CompareTo(diaAtual) == 1)
                 {
                     //Adicionar no Banco de Dados o agendamento.
                     repPaciente.ReceberPacientePeloProtocolo(Agendamento.Protocolo).AddConsulta(Agendamento);
+                    return true;
                 }
             }
+
+            return false;
         }
 
 

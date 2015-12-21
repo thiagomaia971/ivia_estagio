@@ -51,14 +51,63 @@ namespace UnitTestProject1
             //Arange
             RepositorioAgendamento repAgendamento;
             RepositorioPaciente repPaciente;
+            DateTime diaConsulta = DateTime.Now;
 
             //Act
             repPaciente = new RepositorioPaciente();
             repAgendamento = new RepositorioAgendamento(repPaciente);
-            repAgendamento.RegistrarAgendamento(new Agendamento(123948, new DateTime(2015, 12, 18, 12, 30, 0), EnumTipoDeTratamento.Intercorrencia));
+
+            diaConsulta = diaConsulta.AddHours(3);
+            repAgendamento.RegistrarAgendamento(new Agendamento(123948, diaConsulta, EnumTipoDeTratamento.Intercorrencia));
 
             //Assert
-            Assert.AreEqual(1, repAgendamento.QuantidadeDePacientesAgendados(new DateTime(2015, 12, 18, 12, 30, 0)));
+            Assert.AreEqual(1, repAgendamento.QuantidadeDePacientesAgendados(DateTime.Today));
+
+        }
+
+        [TestMethod]
+        public void Como_Atendente_Não_Posso_Registrar_Uma_Consulta_Para_Uma_Data_Passada()
+        {
+
+            //Arange
+            RepositorioAgendamento repAgendamento;
+            RepositorioPaciente repPaciente;
+            DateTime diaConsulta = DateTime.Now;
+            bool registroConsultaBoolean;
+
+            //Act
+            repPaciente = new RepositorioPaciente();
+            repAgendamento = new RepositorioAgendamento(repPaciente);
+
+            diaConsulta = diaConsulta.AddDays(-10);
+            registroConsultaBoolean = repAgendamento.RegistrarAgendamento(new Agendamento(123948, diaConsulta, EnumTipoDeTratamento.Intercorrencia));
+
+            //Assert
+            Assert.IsFalse(registroConsultaBoolean);
+
+        }
+
+        [TestMethod]
+        public void Como_Atendente_Devo_Ser_Capaz_De_Registrar_Uma_Consulta_e_Verificar_Se_Tem_1_Paciente_Para_Ser_Atendido_No_Dia_Seguinte()
+        {
+
+            //Arange
+            RepositorioAgendamento repAgendamento;
+            RepositorioPaciente repPaciente;
+            DateTime diaAtual = DateTime.Now;
+
+            //Act
+            repPaciente = new RepositorioPaciente();
+            repAgendamento = new RepositorioAgendamento(repPaciente);
+
+            diaAtual = diaAtual.AddHours(2);
+
+            repAgendamento.RegistrarAgendamento(new Agendamento(123948, diaAtual, EnumTipoDeTratamento.Intercorrencia));
+
+            diaAtual = diaAtual.AddDays(1);
+
+            //Assert
+            Assert.AreEqual(1, repAgendamento.QuantidadeDePacientesAgendados(diaAtual));
 
         }
 
@@ -69,11 +118,14 @@ namespace UnitTestProject1
             //Arange
             RepositorioAgendamento repAgendamento;
             RepositorioPaciente repPaciente;
+            DateTime diaAtual = DateTime.Now;
 
             //Act
             repPaciente = new RepositorioPaciente();
             repAgendamento = new RepositorioAgendamento(repPaciente);
-            repAgendamento.RegistrarAgendamento(new Agendamento(123948, new DateTime(2015, 12, 18, 12, 30, 0), EnumTipoDeTratamento.Quimioterapia_Dia));
+
+            diaAtual = diaAtual.AddHours(2);
+            repAgendamento.RegistrarAgendamento(new Agendamento(123948, diaAtual, EnumTipoDeTratamento.Quimioterapia_Dia));
 
             //Assert
             List<Paciente> p = repAgendamento.PacientesAgendadosPeloTipo(EnumTipoDeTratamento.Quimioterapia_Dia);
@@ -82,6 +134,7 @@ namespace UnitTestProject1
             {
                 cont++;
             }
+
             Assert.AreEqual(1, cont);
 
         }

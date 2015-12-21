@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgendaCompleta.cs" />
     <Compile Include="Agendamento.cs" />
     <Compile Include="Atendente.cs" />
     <Compile Include="EnumTipoDeTratamento.cs" />
