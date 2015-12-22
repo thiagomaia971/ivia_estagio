@@ -33,7 +33,7 @@ namespace Core
             substituir o mock pelo contexto
             paciente = ctx.Pacientes.find.....            
             */           
-            return Pacientes.Find(p => p.getProtocolo() == Protocolo);
+            return Pacientes.Find(p => p.Protocolo == Protocolo);
         }
 
         public bool PacienteExiste(int Protocolo)
@@ -41,17 +41,15 @@ namespace Core
             /*
             substituir mock por ctx
             */
-            return Pacientes.Exists(p => p.getProtocolo() == Protocolo);
+            return Pacientes.Exists(p => p.Protocolo == Protocolo);
         }
         private void Mock(List<Paciente> Pacientes)
         {
-
             Pacientes.Add(new Paciente(123948, "Thiago"));
             Pacientes.Add(new Paciente(239847, "Daniel"));
-            Pacientes.Add(new Paciente(23984, "Ricson"));
-            Pacientes.Add(new Paciente(3245793, "Ryan"));
-            Pacientes.Add(new Paciente(34857, "Antonio"));
-
+            Pacientes.Add(new Paciente(239848, "Ricson"));
+            Pacientes.Add(new Paciente(324579, "Ryan"));
+            Pacientes.Add(new Paciente(3485720, "Antonio"));
         }
 
     }

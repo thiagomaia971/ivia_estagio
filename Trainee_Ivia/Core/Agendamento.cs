@@ -13,10 +13,6 @@ namespace Core
         public DateTime DiaAgendado { get; set; }
         public EnumTipoDeTratamento TipoDeTratamento { get; set; }
 
-        public Agendamento()
-        {
-
-        }
 
         public Agendamento(int Protocolo, DateTime DiaAgendado, EnumTipoDeTratamento TipoDeTratamento)
         {
@@ -24,6 +20,7 @@ namespace Core
             {
                 throw new ArgumentNullException("dia agendado");
             }
+
             this.Protocolo = Protocolo;
             this.DiaAgendado = DiaAgendado;
             this.TipoDeTratamento = TipoDeTratamento;

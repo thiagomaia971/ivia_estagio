@@ -24,10 +24,10 @@ namespace Core
             substituir list por ctx e inicializa-lo
             */
             agendamentos = new List<Agendamento>();
+            Mock(agendamentos);
         }
-
-
-        public List<Agendamento> ReceberAgendamentosPaciente(int protocolo)
+        
+        public List<Agendamento> receberAgendamentosPaciente(int protocolo)
         {
             if(agendamentos.Exists(a => a.Protocolo == protocolo))
             {
@@ -42,13 +42,13 @@ namespace Core
             return null;
         }
 
-        public bool RegistrarAgendamento(Agendamento agendamento)
+        public bool registrarAgendamento(Agendamento agendamento)
         {
 
             if (repPaciente.PacienteExiste(agendamento.Protocolo))
             {
                 /*
-                essa verificação não deve ser feita aqui, pois deve ser feita antes
+                essa verificação a baixo não deve ser feita aqui, pois deve ser feita antes
                 temos aqui só o repositorio!! A única coisa a ser feita aqui é a verificação
                 da existência do paciente
 
@@ -75,38 +75,37 @@ namespace Core
         }
 
 
-        public List<Paciente> PacientesAgendados(DateTime dia)
+        public List<Paciente> pacientesAgendados(DateTime dia)
         {
             List<Paciente> pacientes = new List<Paciente>();
             
             var agendamentosDia = agendamentos.FindAll(a => a.DiaAgendado.Date.CompareTo(dia.Date) == 0);
             
-            if(agendamentosDia.Count != 0)
+            foreach( var a in agendamentosDia)
             {
-                pacientes.Add   
-            }
-                
-            /*
-
-            foreach (var auxPaciente in repPaciente.ReceberTodosPacientes())
-            {
-                DateTime ultimoAgendamento = auxPaciente.UltimoAgendamento().DiaAgendado;
-                if (ultimoAgendamento.Day == dia.Day &&
-                    ultimoAgendamento.Month == dia.Month &&
-                    ultimoAgendamento.Year == dia.Year)
+                if (!pacientes.Exists(p => p.Protocolo == a.Protocolo))
                 {
-
-                    pacientes.Add(auxPaciente);
-
+                    pacientes.Add(repPaciente.ReceberPaciente(a.Protocolo));   
                 }
-            }
-            */
+            }            
 
             return pacientes;
         }
 
-        public List<Paciente> PacientesAgendadosPeloTipo(EnumTipoDeTratamento tipoDeTratamento)
+        public int quantidadePacientesAgendados(DateTime dia)
         {
+            return pacientesAgendados(dia).Count;
+        }
+
+        
+       /* public List<Paciente> PacientesAgendadosPeloTipo(EnumTipoDeTratamento tipoDeTratamento)
+        {
+            /*
+            esse método eu acredito que não faz sentido na nossa aplicação. 
+            Porquê deve existir um método que retorna 
+            toooooodos os pacientes de um tipo? alguma contabilidade?
+            
+
             List<Paciente> PacientesAgendadosPeloTipo = new List<Paciente>();
 
             foreach (var auxPaciente in repPaciente.ReceberTodosPacientes())
@@ -123,23 +122,17 @@ namespace Core
 
             return PacientesAgendadosPeloTipo;
         }
-
-        public int QuantidadeDePacientesAgendados(DateTime Dia)
+    */
+        
+        private void Mock(List<Agendamento> agendamentos)
         {
-            int qtde = 0;
-            DateTime diaAtual = Dia;
-
-            foreach (var auxPaciente in PacientesAgendados(Dia))
-            {
-                qtde++;
-            }
-
-            return qtde;
-        }
-
-        public void Mock()
-        {
-
+            agendamentos.Add(new Agendamento(123948, DateTime.Now, EnumTipoDeTratamento.Procedimento));
+            agendamentos.Add(new Agendamento(123948, DateTime.Now, EnumTipoDeTratamento.Intercorrencia));
+            agendamentos.Add(new Agendamento(239847, DateTime.Now, EnumTipoDeTratamento.Procedimento));
+            agendamentos.Add(new Agendamento(239848, DateTime.Now, EnumTipoDeTratamento.Procedimento));
+            agendamentos.Add(new Agendamento(324579, DateTime.Now, EnumTipoDeTratamento.Procedimento));
+            agendamentos.Add(new Agendamento(3485720, DateTime.Now, EnumTipoDeTratamento.Procedimento));
+            agendamentos.Add(new Agendamento(3485720, DateTime.Now, EnumTipoDeTratamento.Intercorrencia));
         }
 
     }

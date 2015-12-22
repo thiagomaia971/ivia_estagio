@@ -5,49 +5,45 @@ namespace Core
 {
     public class Paciente
     {
+        public int Id { get; set; }
+        public int Protocolo { get;}
+        public String Nome { get; set; }
+        public String NomeResponsável { get; set; }
+        public String ContatoResponsável { get; set; }
+        public DateTime dataNascimento { get; set; }
 
-        private int Id { get; set; }
-        private int Protocolo;
-        private String Nome;
-        
-        public Paciente()
-        {
-        }
 
-        public Paciente(int Protocolo, String Nome)
+        public Paciente(int Protocolo, String Nome, String NomeResponsável, String ContatoResponsável, DateTime dataNascimento)
         {
             if (String.IsNullOrEmpty(Nome))
             {
                 throw new ArgumentNullException("Nome");
+            }/*else if (String.IsNullOrEmpty(NomeResponsável))
+            {
+                throw new ArgumentNullException("NomeResponsável");
+            }else if (String.IsNullOrEmpty(ContatoResponsável))
+            {
+                throw new ArgumentNullException("ContatoResponsável");
+            */else if (dataNascimento == null)
+            {
+                throw new ArgumentNullException("dataNascimento");
             }
+
             this.Protocolo = Protocolo;
             this.Nome = Nome;
-
-            ListaDeConsultas = new List<Agendamento>();
+            this.ContatoResponsável = ContatoResponsável;
+            this.NomeResponsável = NomeResponsável;
+            this.dataNascimento = dataNascimento;
 
         }
 
-        public Agendamento UltimoAgendamento()
+        public Paciente(int v1, string v2)
         {
-            Agendamento ag = new Agendamento();
-
-            foreach (var agendamento in ListaDeConsultas)
-            {
-                ag = agendamento;
-            }
-
-            return ag;
+            /*
+            apagar esse ctor temporario
+            */
+            this.Protocolo = v1;
+            this.Nome= v2;
         }
-
-        //Getters e Setters
-
-        public int getProtocolo() { return Protocolo; }
-
-        public string getNome() { return Nome; }
-        public void setNome(string Nome) { this.Nome = Nome; }
-
-        public List<Agendamento> getListaDeConsultas() { return ListaDeConsultas; }
-        public void AddConsulta(Agendamento Agendamento) { this.ListaDeConsultas.Add(Agendamento); }
-
     }
 }
