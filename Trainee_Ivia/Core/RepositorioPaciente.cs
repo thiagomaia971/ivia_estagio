@@ -9,51 +9,39 @@ namespace Core
     public class RepositorioPaciente
     {
         //Context do Entity Framework
-        List<Paciente> Pacientes = new List<Paciente>();
+        private List<Paciente> Pacientes;
+
+        public RepositorioPaciente()
+        {
+            /*
+            substituir list por ctx e inicializa-lo
+            */
+            Pacientes = new List<Paciente>();
+            Mock(Pacientes);
+        }
 
         public List<Paciente> ReceberTodosPacientes()
         {
             //Recebe todos os Pacientes do Banco de Dados.
             //Pacientes = ctx.Pacientes.List();
-            if (Pacientes.Count == 0)
-            {
-                Mock(Pacientes);
-            }
-
             return Pacientes;
         }
 
-        public Paciente ReceberPacientePeloProtocolo(int Protocolo)
+        public Paciente ReceberPaciente(int Protocolo)
         {
-
-            Paciente Paciente = new Paciente();
-            List<Paciente> TodosPacientes = ReceberTodosPacientes();
-
-            if (PacienteExiste(Protocolo))
-            {
-                foreach (var auxPaciente in TodosPacientes)
-                {
-                    if (auxPaciente.getProtocolo() == Protocolo)
-                    {
-                        Paciente = auxPaciente;
-                    }
-                }
-            }
-
-            return Paciente;
+            /*
+            substituir o mock pelo contexto
+            paciente = ctx.Pacientes.find.....            
+            */           
+            return Pacientes.Find(p => p.getProtocolo() == Protocolo);
         }
 
         public bool PacienteExiste(int Protocolo)
         {
-            foreach (var auxPaciente in ReceberTodosPacientes())
-            {
-                if (auxPaciente.getProtocolo() == Protocolo)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            /*
+            substituir mock por ctx
+            */
+            return Pacientes.Exists(p => p.getProtocolo() == Protocolo);
         }
         private void Mock(List<Paciente> Pacientes)
         {

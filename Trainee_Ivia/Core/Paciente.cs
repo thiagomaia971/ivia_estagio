@@ -8,17 +8,18 @@ namespace Core
 
         private int Id { get; set; }
         private int Protocolo;
-        private string Nome;
-        private List<Agendamento> ListaDeConsultas;
+        private String Nome;
         
         public Paciente()
         {
-            ListaDeConsultas = new List<Agendamento>();
-
         }
 
-        public Paciente(int Protocolo, string Nome)
+        public Paciente(int Protocolo, String Nome)
         {
+            if (String.IsNullOrEmpty(Nome))
+            {
+                throw new ArgumentNullException("Nome");
+            }
             this.Protocolo = Protocolo;
             this.Nome = Nome;
 

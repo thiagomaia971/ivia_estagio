@@ -9,40 +9,68 @@ namespace Core
     public class RepositorioAgendamento
     {
 
-        RepositorioPaciente repPaciente;
+        private RepositorioPaciente repPaciente;
 
+        private List<Agendamento> agendamentos;
+        
         public RepositorioAgendamento(RepositorioPaciente repPaciente)
         {
-            this.repPaciente = repPaciente;
-        }
-
-
-        public List<Agendamento> ReceberTodosAgendamentosPeloProtocolo(int Protocolo)
-        {
-            List<Agendamento> Agendamentos = new List<Agendamento>();
-
-            Paciente paciente = repPaciente.ReceberPacientePeloProtocolo(Protocolo);
-            Agendamentos = paciente.getListaDeConsultas();
-
-            return Agendamentos;
-        }
-
-        public bool RegistrarAgendamento(Agendamento Agendamento)
-        {
-
-            if (repPaciente.PacienteExiste(Agendamento.Protocolo))
+            if(repPaciente == null)
             {
+                throw new ArgumentNullException("repPaciente");
+            }
+            this.repPaciente = repPaciente;
+            /*
+            substituir list por ctx e inicializa-lo
+            */
+            agendamentos = new List<Agendamento>();
+        }
+
+
+        public List<Agendamento> ReceberAgendamentosPaciente(int protocolo)
+        {
+            if(agendamentos.Exists(a => a.Protocolo == protocolo))
+            {
+                return agendamentos.FindAll(a => a.Protocolo == protocolo);
+            }
+            /*
+            lembrar de verificar se o cliente foi encontrado sugiro exigir trycath e 
+            gerar erro caso não encontre o paciente para tratamento e causar o mesmo erro 
+
+            caso não vá gerar erro deve-se retornar lista vazia mesmo
+            */
+            return null;
+        }
+
+        public bool RegistrarAgendamento(Agendamento agendamento)
+        {
+
+            if (repPaciente.PacienteExiste(agendamento.Protocolo))
+            {
+                /*
+                essa verificação não deve ser feita aqui, pois deve ser feita antes
+                temos aqui só o repositorio!! A única coisa a ser feita aqui é a verificação
+                da existência do paciente
 
                 DateTime diaAtual = DateTime.Now;
-
                 if (Agendamento.DiaAgendado.CompareTo(diaAtual) == 1)
                 {
                     //Adicionar no Banco de Dados o agendamento.
                     repPaciente.ReceberPacientePeloProtocolo(Agendamento.Protocolo).AddConsulta(Agendamento);
                     return true;
                 }
-            }
+                */
 
+                /*
+                substituir list por ctx
+                */
+                agendamentos.Add(agendamento);
+
+                return true;
+            }
+            /*
+            prefiro tornar throwable o método e exigir trycath no metodo que chama
+            */
             return false;
         }
 
@@ -50,7 +78,15 @@ namespace Core
         public List<Paciente> PacientesAgendados(DateTime dia)
         {
             List<Paciente> pacientes = new List<Paciente>();
-
+            
+            var agendamentosDia = agendamentos.FindAll(a => a.DiaAgendado.Date.CompareTo(dia.Date) == 0);
+            
+            if(agendamentosDia.Count != 0)
+            {
+                pacientes.Add   
+            }
+                
+            /*
 
             foreach (var auxPaciente in repPaciente.ReceberTodosPacientes())
             {
@@ -64,6 +100,7 @@ namespace Core
 
                 }
             }
+            */
 
             return pacientes;
         }

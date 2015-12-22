@@ -20,6 +20,10 @@ namespace Core
 
         public Agendamento(int Protocolo, DateTime DiaAgendado, EnumTipoDeTratamento TipoDeTratamento)
         {
+            if(DiaAgendado == null)
+            {
+                throw new ArgumentNullException("dia agendado");
+            }
             this.Protocolo = Protocolo;
             this.DiaAgendado = DiaAgendado;
             this.TipoDeTratamento = TipoDeTratamento;
