@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core
+namespace Dominio.Core
 {
     public class Agendamento
     {
@@ -12,7 +12,12 @@ namespace Core
         public int Protocolo { get; set; }
         public DateTime DiaAgendado { get; set; }
         public EnumTipoDeTratamento TipoDeTratamento { get; set; }
+        public bool EstadoDaConsulta { get; set; }
 
+        public Agendamento()
+        {
+
+        }
 
         public Agendamento(int Protocolo, DateTime DiaAgendado, EnumTipoDeTratamento TipoDeTratamento)
         {
@@ -24,6 +29,7 @@ namespace Core
             this.Protocolo = Protocolo;
             this.DiaAgendado = DiaAgendado;
             this.TipoDeTratamento = TipoDeTratamento;
+            this.EstadoDaConsulta = false;
         }
 
     }

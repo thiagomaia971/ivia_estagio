@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Core
+namespace Dominio.Core
 {
     public class Paciente
     {
@@ -10,7 +10,7 @@ namespace Core
         public String Nome { get; set; }
         public String NomeResponsável { get; set; }
         public String ContatoResponsável { get; set; }
-        public DateTime dataNascimento { get; set; }
+        public DateTime DataNascimento { get; set; }
 
 
         public Paciente(int Protocolo, String Nome, String NomeResponsável, String ContatoResponsável, DateTime dataNascimento)
@@ -33,7 +33,7 @@ namespace Core
             this.Nome = Nome;
             this.ContatoResponsável = ContatoResponsável;
             this.NomeResponsável = NomeResponsável;
-            this.dataNascimento = dataNascimento;
+            this.DataNascimento = dataNascimento;
 
         }
 
