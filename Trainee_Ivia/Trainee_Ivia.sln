@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{85F238B8-6D9E-495A-9B25-4E6BA78D0D5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Testes", "UnitTestProject1\Dominio.Testes.csproj", "{DBB23A48-E689-4384-A40A-E258146E44D0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Repositorio", "DAO\Infra.Repositorio.csproj", "{669E9411-C190-4626-B7B9-A55E4B927FE2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{FAED9C4E-BACB-4B73-9E51-F97476EBE3CB}"
@@ -15,17 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apresentação", "Apresenta
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestrutura", "Infraestrutura", "{047C4A9A-B184-462C-AEC5-7A8424CA2C12}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backup antigo", "Backup antigo", "{EC0D64BC-EDAE-494D-82CB-4A29E3B582D8}"
-	ProjectSection(SolutionItems) = preProject
-		Core\Agendamento.cs = Core\Agendamento.cs
-		UnitTestProject1\DominioTestes.cs = UnitTestProject1\DominioTestes.cs
-		Core\EnumTipoDeTratamento.cs = Core\EnumTipoDeTratamento.cs
-		Core\Paciente.cs = Core\Paciente.cs
-		UnitTestProject1\RepositorioAgendamento.cs = UnitTestProject1\RepositorioAgendamento.cs
-		UnitTestProject1\RepositorioPaciente.cs = UnitTestProject1\RepositorioPaciente.cs
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Core", "Dominio.Core\Dominio.Core.csproj", "{72CDFA49-182D-4DAA-84CB-7C6FB6F6E345}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Testes", "Dominio.Testes\Dominio.Testes.csproj", "{B5939F78-2BFA-49FC-BA08-8865DEC8D94A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +27,6 @@ Global
 		{85F238B8-6D9E-495A-9B25-4E6BA78D0D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85F238B8-6D9E-495A-9B25-4E6BA78D0D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85F238B8-6D9E-495A-9B25-4E6BA78D0D5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DBB23A48-E689-4384-A40A-E258146E44D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DBB23A48-E689-4384-A40A-E258146E44D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DBB23A48-E689-4384-A40A-E258146E44D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DBB23A48-E689-4384-A40A-E258146E44D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{669E9411-C190-4626-B7B9-A55E4B927FE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{669E9411-C190-4626-B7B9-A55E4B927FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{669E9411-C190-4626-B7B9-A55E4B927FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,14 +35,18 @@ Global
 		{72CDFA49-182D-4DAA-84CB-7C6FB6F6E345}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72CDFA49-182D-4DAA-84CB-7C6FB6F6E345}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72CDFA49-182D-4DAA-84CB-7C6FB6F6E345}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5939F78-2BFA-49FC-BA08-8865DEC8D94A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5939F78-2BFA-49FC-BA08-8865DEC8D94A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5939F78-2BFA-49FC-BA08-8865DEC8D94A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5939F78-2BFA-49FC-BA08-8865DEC8D94A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{85F238B8-6D9E-495A-9B25-4E6BA78D0D5A} = {A5A2162F-7E7D-45BE-8127-8521E3714AA8}
-		{DBB23A48-E689-4384-A40A-E258146E44D0} = {FAED9C4E-BACB-4B73-9E51-F97476EBE3CB}
 		{669E9411-C190-4626-B7B9-A55E4B927FE2} = {047C4A9A-B184-462C-AEC5-7A8424CA2C12}
 		{72CDFA49-182D-4DAA-84CB-7C6FB6F6E345} = {FAED9C4E-BACB-4B73-9E51-F97476EBE3CB}
+		{B5939F78-2BFA-49FC-BA08-8865DEC8D94A} = {FAED9C4E-BACB-4B73-9E51-F97476EBE3CB}
 	EndGlobalSection
 EndGlobal

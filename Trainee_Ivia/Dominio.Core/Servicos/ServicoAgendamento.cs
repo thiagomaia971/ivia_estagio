@@ -25,5 +25,9 @@ namespace Dominio.Core.Servicos
             this.repAgendamento = repAgendamento;
             this.repPaciente = repPaciente;
         }
+
+
+
+
     }
 }
