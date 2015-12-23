@@ -10,7 +10,23 @@ namespace Dominio.Core
     {
         public int Id { get; set; }
         public int Protocolo { get; set; }
-        public DateTime DiaAgendado { get; set; }
+
+        private DateTime diaAgendado;
+        public DateTime DiaAgendado
+        {
+            get { return diaAgendado; }
+            set {
+                if (value.Date.CompareTo(DateTime.Now.Date) >= 0)
+                {
+                    diaAgendado = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Data inválida!");
+                }
+            }
+        }
+
         public EnumTipoDeTratamento TipoDeTratamento { get; set; }
         public bool EstadoDaConsulta { get; set; }
 

@@ -46,8 +46,6 @@
     <Compile Include="Interfaces\Repositórios\IRepositorioPaciente.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositorioAgendamento.cs" />
-    <Compile Include="RepositorioPaciente.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
