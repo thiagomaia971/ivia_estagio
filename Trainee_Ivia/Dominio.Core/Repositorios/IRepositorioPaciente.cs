@@ -10,5 +10,7 @@ namespace Dominio.Core.Repositorios
     public interface IRepositorioPaciente
     {
         Paciente obterPaciente(String protocolo);
+        IList<Paciente> obterPacientes(String nome);
+        IList<Paciente> obterPacientes();
     }
 }

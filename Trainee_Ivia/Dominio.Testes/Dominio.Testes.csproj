@@ -50,8 +50,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="RepositorioAgendamentoMock.cs" />
+    <Compile Include="RepositorioPacienteMock.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio.Core\Dominio.Core.csproj">
+      <Project>{72cdfa49-182d-4daa-84cb-7c6fb6f6e345}</Project>
+      <Name>Dominio.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

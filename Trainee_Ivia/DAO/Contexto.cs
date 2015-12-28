@@ -1,4 +1,4 @@
-﻿using Dominio.Core;
+﻿using Dominio.Core.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,7 +13,7 @@ namespace DAO
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Agendamento> Agendamentos { get; set; }
 
-        public Contexto() : base()
+        public Contexto() : base("PeterPanRepositorios")
         {
 
         }

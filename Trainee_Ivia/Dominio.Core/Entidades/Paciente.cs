@@ -12,6 +12,11 @@ namespace Dominio.Core.Entidades
         public String Protocolo { get; set; }
         public String Nome { get; set; }
 
+        public Paciente()
+        {
+
+        }
+
         public Paciente(String Protocolo, String Nome)
         {
             if (String.IsNullOrEmpty(Protocolo))

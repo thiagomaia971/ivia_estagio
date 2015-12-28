@@ -50,11 +50,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexto.cs" />
+    <Compile Include="Migrations\201512281454044_first.cs" />
+    <Compile Include="Migrations\201512281454044_first.Designer.cs">
+      <DependentUpon>201512281454044_first.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio.Core\Dominio.Core.csproj">
+      <Project>{72cdfa49-182d-4daa-84cb-7c6fb6f6e345}</Project>
+      <Name>Dominio.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512281454044_first.resx">
+      <DependentUpon>201512281454044_first.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

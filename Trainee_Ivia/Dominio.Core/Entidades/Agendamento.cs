@@ -14,6 +14,11 @@ namespace Dominio.Core.Entidades
         public DateTime DiaDoAgendamento { get; set; }
         public ETipoDeTratamento TipoDeTratamento { get; set; }
 
+        public Agendamento()
+        {
+
+        }
+
         public Agendamento(Paciente paciente, DateTime dia, ETipoDeTratamento tipo)
         {
             if (paciente == null)
