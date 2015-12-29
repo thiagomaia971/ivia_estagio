@@ -11,7 +11,7 @@ namespace Dominio.Testes
     public class TestesBD
     {
         [TestMethod]
-        public void como_atendente_devo_registrar_um_agendamento()
+        public void BD_como_atendente_devo_registrar_um_agendamento()
         {
             //arrenge
             IRepositorioAgendamento repAgendamento;
@@ -35,7 +35,7 @@ namespace Dominio.Testes
         }
 
         [TestMethod]
-        public void como_atendente_devo_registrar_um_agendamento_e_obter_o_mesmo_agendamento()
+        public void BD_como_atendente_devo_registrar_um_agendamento_e_obter_o_mesmo_agendamento()
         {
             //arrenge
             IRepositorioAgendamento repAgendamento;
@@ -61,7 +61,7 @@ namespace Dominio.Testes
         }
 
         [TestMethod]
-        public void como_atendente_devo_obter_todos_agendamentos_pelo_dia()
+        public void BD_como_atendente_devo_obter_todos_agendamentos_pelo_dia()
         {
             //arrenge
             IRepositorioAgendamento repAgendamento;
@@ -82,7 +82,7 @@ namespace Dominio.Testes
         }
 
         [TestMethod]
-        public void como_atendente_devo_obter_todos_agendamentos_do_dia_atual()
+        public void BD_como_atendente_devo_obter_todos_agendamentos_do_dia_atual()
         {
             //arrenge
             IRepositorioAgendamento repAgendamento;
@@ -102,7 +102,7 @@ namespace Dominio.Testes
             Assert.AreEqual(DateTime.Today.Day, agendamentos[0].DiaDoAgendamento.Day);
         }
         [TestMethod]
-        public void como_atendente_devo_obter_todos_agendamentos_do_para_daqui_a_5_dias()
+        public void BD_como_atendente_devo_obter_todos_agendamentos_do_para_daqui_a_5_dias()
         {
             //arrenge
             IRepositorioAgendamento repAgendamento;
@@ -122,7 +122,7 @@ namespace Dominio.Testes
             Assert.AreEqual(DateTime.Today.AddDays(5).Day, agendamentos[0].DiaDoAgendamento.Day);
         }
         [TestMethod]
-        public void como_atendente_devo_obter_todos_agendamentos_do_para_daqui_a_5_dias_por_qmtDia()
+        public void BD_como_atendente_devo_obter_todos_agendamentos_do_para_daqui_a_5_dias_por_qmtDia()
         {
             //arrenge
             IRepositorioAgendamento repAgendamento;
@@ -140,10 +140,10 @@ namespace Dominio.Testes
                 (DateTime.Today.AddDays(5),ETipoDeTratamento.quimioterapiaDia);
 
             //assert
-            Assert.AreEqual(9,agendamentos.Count);
+            Assert.IsTrue(agendamentos.Count > 0);
         }
         [TestMethod]
-        public void como_atendente_devo_obter_o_paciente_pedro_pelo_nome()
+        public void BD_como_atendente_devo_obter_o_paciente_pedro_pelo_nome()
         {
             //arrenge
             IRepositorioAgendamento repAgendamento;

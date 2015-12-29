@@ -1,31 +1,225 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@model MVC.ViewModel.PacienteViewModel
+@{
+    ViewBag.Title = "Lista de Pacientes";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@using (Ajax.BeginForm(
+                    new AjaxOptions
+                    {
+                        HttpMethod = "post",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "list-container"
+                    }))
+{
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <!-- BEGIN HIDDEN BLOCK -->
+    //@Html.HiddenFor(p => p.EventCommand)
+    //@Html.HiddenFor(p => p.Mode)
+    <!-- END HIDDEN BLOCK-->
+
+    <!-- BEGIN SEARCH BLOCK -->
+    //if (Model.IsSearchAreaVisible)
+    //{
+        <div id="search-container" class="panel panel-lightgreen">
+            <div class="panel-heading">
+                <label for="InputData" class="panel-tittle">Busca</label>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    @*<form class="form-inline ">*@
+                    <div class="form-group col-md-6 col-md-offset-3">
+                        <div class="input-group ">
+                            <input type="text" class="form-control form_datetime" id="InputData" readonly placeholder="dd/mm/yyyy">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+                        </div>
+                    </div>
+                    @*</form>*@
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-offset-3">
+                        <div class="input-group form-group">
+
+                            @*@Html.TextBoxFor(p => p.SearchEntity.Nome, new
+                       {
+                           @class = "form-control",
+                           placeholder = "Digite o nome do paciente..."
+                       })*@
+
+                            <span class="input-group-btn">
+                                <button id="btnSearch" class="btn btn-success" data-pdsa-action="search">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-md-4 col-md-offset-4">
+
+                        <button id="btnAdd" class="btn btn-primary" data-pdsa-action="add">
+                            <span class="glyphicon glyphicon-plus-sign"></span> Adicionar
+                        </button>
+
+                        <button id="btnClear" class="btn btn-danger" data-pdsa-action="clear">
+                            <span class="glyphicon glyphicon-erase"></span> Limpar
+                        </button>
+
+                        <button id="btnPrint" class="btn btn-success" data-pdsa-action="print">
+                            <span class="glyphicon glyphicon-print"></span> Imprimir
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+    <!-- END SEARCH BLOCK-->
+
+    <!-- BEGIN DETAIL BLOCK-->
+@*
+    if (Model.IsDetailAreaVisible)
+    {
+        <div class="panel panel-lightgreen">
+            <div class="panel-heading">
+                <h1 class="panel-title">Cadastro</h1>
+            </div>
+            <div class="panel-body">
+
+                <!-- BEGIN MESSAGE AREA-->
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        @if (!Model.IsValid)
+                        {
+                            <div class="alert alert-danger alert-dismissable" role="alert">
+                                <button type="button" class="close" data-dissmiss="alert">
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                @Html.ValidationSummary(false)
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- END MESSAGE AREA-->
+
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NovoPaciente.Nome)
+                    @Html.TextBoxFor(m => m.NovoPaciente.Nome, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NovoPaciente.DataNascimento)
+                    @Html.TextBoxFor(m => m.NovoPaciente.DataNascimento, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Sexo: ")
+                    @Html.DropDownListFor(m => m.NovoPaciente.Sexo, new[] {
+                        new SelectListItem() { Text = "Outro", Value = ((char) Core.SexoEnum.Outro).ToString(), Selected = true },
+                        new SelectListItem() { Text = Core.SexoEnum.Homem.ToString(), Value = ((char) Core.SexoEnum.Homem).ToString() },
+                        new SelectListItem() { Text = Core.SexoEnum.Mulher.ToString(), Value = ((char) Core.SexoEnum.Mulher).ToString() }
+                        }, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NovoPaciente.Altura)
+                    @Html.TextBoxFor(m => m.NovoPaciente.Altura, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NovoPaciente.Peso)
+                    @Html.TextBoxFor(m => m.NovoPaciente.Peso, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Tipo de Tratamento: ")
+                    @Html.DropDownListFor(m => m.NovoPaciente.TipoTratamento, new[] {
+                        new SelectListItem() { Text = "Escolha uma opção...", Value = ((int) Core.TipoAtendimentoEnum.Opcao).ToString(), Selected = true, Disabled = true },
+                        new SelectListItem() { Text = "Quimioterapia Dia", Value = ((int) Core.TipoAtendimentoEnum.Quimioterapia_Dia).ToString() },
+                        new SelectListItem() { Text = "Quimioterapia Sequencial", Value = ((int) Core.TipoAtendimentoEnum.Quimioterapia_Sequencial).ToString() },
+                        new SelectListItem() { Text = "Procedimento", Value = ((int)Core.TipoAtendimentoEnum.Procedimento).ToString()},
+                        new SelectListItem() { Text = "Intercorrencia", Value = ((int)Core.TipoAtendimentoEnum.Intercorrencia).ToString() }
+                        }, new { @class = "form-control" })
+                </div>
+
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button id="btnSave" class="btn btn-success" data-pdsa-action="save">
+                                <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+                            </button>
+
+                            <button id="btnCancel" class="btn btn-danger" formnovalidate="formnovalidate" data-pdsa-action="cancel">
+                                <span class="glyphicon glyphicon-remove-circle"></span> Cancelar
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }*@
+
+    <!-- END DETAIL BLOCK-->
+
+    <!-- LIST BLOCK-->
+    if (Model.IsListAreaVisible)
+    {
+        <div id="list-container" class="panel panel-lightgreen">
+
+            @Html.Partial("_Pacientes", Model)
+
+        </div>
+    }
+    <!-- END LIST BLOCK-->
+}
+
+
+
+
+@*
+    @{
+        ViewBag.Title = "Home Page";
+    }
+
+    <div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@

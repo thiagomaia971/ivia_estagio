@@ -1,0 +1,26 @@
+﻿@model Web.Models.PacienteViewModel
+
+<div class="panel-body">
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Tipo de Tratamento</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var paciente in Model.Pacientes)
+            {
+                <tr>
+                    <td>@paciente.PacienteId</td>
+                    <td>@paciente.Nome</td>
+                    <td>@paciente.TipoTratamento</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

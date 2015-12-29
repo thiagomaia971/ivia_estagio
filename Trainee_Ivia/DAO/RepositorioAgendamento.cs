@@ -34,8 +34,13 @@ namespace DAO
         {
             if (dia == null) throw new ArgumentNullException("Dia");
 
+            var data = dia.Date;
+
             return _ctx.Agendamentos.Where<Agendamento>(
-                a => a.DiaDoAgendamento.Date.CompareTo(dia.Date) == 0).ToList<Agendamento>();
+                a => a.DiaDoAgendamento.Day == dia.Day
+                 &&  a.DiaDoAgendamento.Month == dia.Month
+                 &&  a.DiaDoAgendamento.Year == dia.Year).ToList();
+                //a => a.DiaDoAgendamento.Date.CompareTo(data) == 0).ToList<Agendamento>();
         }
 
         public IList<Agendamento> obterAgendamentos(DateTime dia, ETipoDeTratamento tipo)
@@ -43,7 +48,10 @@ namespace DAO
             if (dia == null) throw new ArgumentNullException("dia");
 
             return _ctx.Agendamentos.Where<Agendamento>(
-                a => a.DiaDoAgendamento == dia && a.TipoDeTratamento == tipo).ToList<Agendamento>();
+                a => a.DiaDoAgendamento.Day == dia.Day
+                 && a.DiaDoAgendamento.Month == dia.Month
+                 && a.DiaDoAgendamento.Year == dia.Year 
+                 && a.TipoDeTratamento == tipo).ToList<Agendamento>();
         }
     }
 }

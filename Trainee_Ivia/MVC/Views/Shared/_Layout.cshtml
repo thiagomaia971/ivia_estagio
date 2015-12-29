@@ -2,6 +2,67 @@
 <html>
 <head>
     <meta charset="utf-8" />
+
+    <title>Cadastro Paciente</title>
+    <link rel="stylesheet" href="../../Content/reset200802.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/otf")
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jqueryval")*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    <link rel="shortcut icon" href="http://pixeljoint.com/files/icons/peter_pan.gif" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body id="body">
+    <div class="container ">
+        <div class="row">
+            <nav class="navbar navbar-default navbar-ligthgreen navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="~/Home/Index">
+                            <img alt="Brand" width="30" height="30" src="~/Content/res/Logo.jpg" />
+                        </a>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="row">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    <nav class="navbar navbar-ligthgreen navbar-fixed-bottom">
+        <p class="navbar-text">ⓒ Ivia Todos direitos reservados. </p>
+    </nav>
+
+
+    @RenderSection("scripts", false)
+
+</body>
+</html>
+
+
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
@@ -42,3 +103,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+*@
