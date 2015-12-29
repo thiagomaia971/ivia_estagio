@@ -40,8 +40,9 @@ namespace DAO.Migrations
                 new Paciente { Protocolo = "10", Nome = "valfonso pereira" }
             );
 
-            var data = DateTime.Today;
-            data = data.AddDays(5);
+            context.SaveChanges();
+
+            var data = DateTime.Now.AddDays(5);
             var pacientes = context.Pacientes.ToList();
             
             context.Agendamentos.AddOrUpdate(p => p.DiaDoAgendamento,

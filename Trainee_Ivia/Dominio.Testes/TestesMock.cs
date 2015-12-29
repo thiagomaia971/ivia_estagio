@@ -7,7 +7,7 @@ using Dominio.Core.Entidades;
 namespace Dominio.Testes
 {
     [TestClass]
-    public class UnitTest1
+    public class TestesMock
     {
         [TestMethod]
         public void como_atendente_devo_registrar_um_agendamento()
@@ -22,14 +22,14 @@ namespace Dominio.Testes
             servicoAgendamento = new ServicoAgendamento(repPaciente, repAgendamento);
 
             var paciente = repPaciente.obterPaciente("1");
-            var data = DateTime.Now;
-            data = data.AddDays(5);
+            var data = DateTime.Now.AddDays(5);
             var agendamento = new Agendamento(paciente,data, ETipoDeTratamento.quimioterapiaDia);
             var funfou = servicoAgendamento.registrarAgendamento(agendamento);
 
             //assert
             Assert.IsTrue(funfou);
         }
+
         [TestMethod]
         public void como_atendente_devo_registrar_um_agendamento_e_obter_o_mesmo_agendamento()
         {
