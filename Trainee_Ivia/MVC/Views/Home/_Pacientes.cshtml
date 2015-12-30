@@ -1,4 +1,4 @@
-﻿@model Web.Models.PacienteViewModel
+﻿@model MVC.ViewModel.PacienteViewModel
 
 <div class="panel-body">
     <table class="table table-hover table-responsive">
@@ -9,7 +9,7 @@
                 <th>Tipo de Tratamento</th>
             </tr>
         </thead>
-
+        
         <tbody>
             @foreach (var paciente in Model.Pacientes)
             {

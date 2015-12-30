@@ -11,20 +11,15 @@ namespace Dominio.Core.Servicos
     public class ServicoAgendamento
     {
         IRepositorioAgendamento repAgendamento;
-        IRepositorioPaciente repPaciente;
 
-        public ServicoAgendamento(IRepositorioPaciente repPaciente, IRepositorioAgendamento repAgendamento)
+        public ServicoAgendamento(IRepositorioAgendamento repAgendamento)
         {
-            if(repPaciente == null)
-            {
-                throw new ArgumentNullException("repPaciente");
-            }else if(repAgendamento == null)
+            if(repAgendamento == null)
             {
                 throw new ArgumentNullException("repAgendamento");
             }
 
             this.repAgendamento = repAgendamento;
-            this.repPaciente = repPaciente;
         }
 
         public bool registrarAgendamento(Agendamento agendamento)

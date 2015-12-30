@@ -41,7 +41,7 @@ namespace Dominio.Testes
             lista.Add(agendamento);
         }
 
-        public IList<Agendamento> obterAgendamentos(DateTime dia)
+        public List<Agendamento> obterAgendamentos(DateTime dia)
         {
             if (dia == null) throw new ArgumentNullException("Dia");
 
@@ -49,7 +49,7 @@ namespace Dominio.Testes
             return agendamentos;
         }
 
-        public IList<Agendamento> obterAgendamentos(DateTime dia, ETipoDeTratamento tipo)
+        public List<Agendamento> obterAgendamentos(DateTime dia, ETipoDeTratamento tipo)
         {
             if (dia == null) throw new ArgumentNullException("dia");
             
@@ -57,9 +57,30 @@ namespace Dominio.Testes
             return agendamentos;
         }
 
-        public IList<Agendamento> obterAgendamentos()
+        public List<Agendamento> obterAgendamentos()
         {
             return lista.ToList();
+        }
+
+        public List<Agendamento> obterAgendamentos(string nome)
+        {
+            if (String.IsNullOrEmpty(nome))
+            {
+                throw new ArgumentNullException("nome");
+            }
+            return lista.FindAll(a => a.Paciente.Nome.Contains(nome));
+        }
+
+        public List<Agendamento> obterAgendamentos(string protocolo, DateTime dia)
+        {
+            if (String.IsNullOrEmpty(protocolo))
+            {
+                throw new ArgumentNullException("protocolo");
+            }
+
+            if (dia == null) throw new ArgumentNullException("dia");
+
+            return lista.FindAll(a => a.Paciente.Protocolo.Equals(protocolo));
         }
     }
 }

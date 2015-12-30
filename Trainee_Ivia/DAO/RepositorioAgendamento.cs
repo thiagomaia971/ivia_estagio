@@ -25,12 +25,22 @@ namespace DAO
             _ctx.SaveChanges();
         }
 
-        public IList<Agendamento> obterAgendamentos()
-        {
-            return _ctx.Agendamentos.ToList<Agendamento>();
+        public List<Agendamento> obterAgendamentos()
+        {   
+            return _ctx.Agendamentos.OrderByDescending(a => a.DiaDoAgendamento).Take(100).ToList();
         }
 
-        public IList<Agendamento> obterAgendamentos(DateTime dia)
+        public List<Agendamento> obterAgendamentos(string nome)
+        {
+            if (String.IsNullOrEmpty(nome))
+            {
+                throw new ArgumentNullException("nome");
+            }
+            return _ctx.Agendamentos.Where(a => a.Paciente.Nome.Contains(nome)).ToList();
+
+        }
+
+        public List<Agendamento> obterAgendamentos(DateTime dia)
         {
             if (dia == null) throw new ArgumentNullException("Dia");
 
@@ -38,19 +48,35 @@ namespace DAO
 
             return _ctx.Agendamentos.Where<Agendamento>(
                 a => a.DiaDoAgendamento.Day == dia.Day
-                 &&  a.DiaDoAgendamento.Month == dia.Month
-                 &&  a.DiaDoAgendamento.Year == dia.Year).ToList();
-                //a => a.DiaDoAgendamento.Date.CompareTo(data) == 0).ToList<Agendamento>();
+                 && a.DiaDoAgendamento.Month == dia.Month
+                 && a.DiaDoAgendamento.Year == dia.Year).ToList();
+            //a => a.DiaDoAgendamento.Date.CompareTo(data) == 0).ToList<Agendamento>();
         }
 
-        public IList<Agendamento> obterAgendamentos(DateTime dia, ETipoDeTratamento tipo)
+        public List<Agendamento> obterAgendamentos(string protocolo, DateTime dia)
+        {
+            if (String.IsNullOrEmpty(protocolo))
+            {
+                throw new ArgumentNullException("protocolo");
+            }
+
+            if (dia == null) throw new ArgumentNullException("dia");
+
+            return _ctx.Agendamentos.Where(a => a.Paciente.Protocolo.Equals(protocolo)
+                && a.DiaDoAgendamento.Day == dia.Day
+                && a.DiaDoAgendamento.Month == dia.Month
+                && a.DiaDoAgendamento.Year == dia.Year
+            ).ToList();
+        }
+
+        public List<Agendamento> obterAgendamentos(DateTime dia, ETipoDeTratamento tipo)
         {
             if (dia == null) throw new ArgumentNullException("dia");
 
             return _ctx.Agendamentos.Where<Agendamento>(
                 a => a.DiaDoAgendamento.Day == dia.Day
                  && a.DiaDoAgendamento.Month == dia.Month
-                 && a.DiaDoAgendamento.Year == dia.Year 
+                 && a.DiaDoAgendamento.Year == dia.Year
                  && a.TipoDeTratamento == tipo).ToList<Agendamento>();
         }
     }

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgendamentoManager.cs" />
     <Compile Include="Contexto.cs" />
     <Compile Include="Migrations\201512281454044_first.cs" />
     <Compile Include="Migrations\201512281454044_first.Designer.cs">

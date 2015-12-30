@@ -11,6 +11,27 @@ namespace Dominio.Testes
     public class TestesBD
     {
         [TestMethod]
+        public void BD_ao_abrir_a_pagina_devo_ver_os_100_primeiros_agendamentos_mais_recentes()
+        {
+            //arrenge
+            IRepositorioAgendamento repAgendamento;
+            IRepositorioPaciente repPaciente;
+            Contexto ctx;
+            ServicoAgendamento servicoAgendamento;
+
+            //act
+            ctx = new Contexto();
+            repPaciente = new RepositorioPaciente(ctx);
+            repAgendamento = new RepositorioAgendamento(ctx);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento);
+
+            var agendamentos = repAgendamento.obterAgendamentos();
+
+            //assert
+            Assert.IsTrue(100 == agendamentos.Count);
+        }
+
+        [TestMethod]
         public void BD_como_atendente_devo_registrar_um_agendamento()
         {
             //arrenge
@@ -23,7 +44,7 @@ namespace Dominio.Testes
             ctx = new Contexto();
             repPaciente = new RepositorioPaciente(ctx);
             repAgendamento = new RepositorioAgendamento(ctx);
-            servicoAgendamento = new ServicoAgendamento(repPaciente, repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento);
 
             var paciente = repPaciente.obterPaciente("1");
             var data = DateTime.Now.AddDays(5);
@@ -47,7 +68,7 @@ namespace Dominio.Testes
             ctx = new Contexto();
             repPaciente = new RepositorioPaciente(ctx);
             repAgendamento = new RepositorioAgendamento(ctx);
-            servicoAgendamento = new ServicoAgendamento(repPaciente, repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento);
 
             var paciente = repPaciente.obterPaciente("1");
             var data = DateTime.Now;
@@ -73,7 +94,7 @@ namespace Dominio.Testes
             ctx = new Contexto();
             repPaciente = new RepositorioPaciente(ctx);
             repAgendamento = new RepositorioAgendamento(ctx);
-            servicoAgendamento = new ServicoAgendamento(repPaciente, repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento);
 
             var agendamentos = repAgendamento.obterAgendamentos(DateTime.Today.AddDays(5));
 
@@ -94,7 +115,7 @@ namespace Dominio.Testes
             ctx = new Contexto();
             repPaciente = new RepositorioPaciente(ctx);
             repAgendamento = new RepositorioAgendamento(ctx);
-            servicoAgendamento = new ServicoAgendamento(repPaciente, repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento);
 
             var agendamentos = repAgendamento.obterAgendamentos(DateTime.Today);
 
@@ -114,7 +135,7 @@ namespace Dominio.Testes
             ctx = new Contexto();
             repPaciente = new RepositorioPaciente(ctx);
             repAgendamento = new RepositorioAgendamento(ctx);
-            servicoAgendamento = new ServicoAgendamento(repPaciente, repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento);
 
             var agendamentos = repAgendamento.obterAgendamentos(DateTime.Today.AddDays(5));
 
@@ -134,7 +155,7 @@ namespace Dominio.Testes
             ctx = new Contexto();
             repPaciente = new RepositorioPaciente(ctx);
             repAgendamento = new RepositorioAgendamento(ctx);
-            servicoAgendamento = new ServicoAgendamento(repPaciente, repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento);
 
             var agendamentos = repAgendamento.obterAgendamentos
                 (DateTime.Today.AddDays(5),ETipoDeTratamento.quimioterapiaDia);
@@ -155,7 +176,7 @@ namespace Dominio.Testes
             ctx = new Contexto();
             repPaciente = new RepositorioPaciente(ctx);
             repAgendamento = new RepositorioAgendamento(ctx);
-            servicoAgendamento = new ServicoAgendamento(repPaciente, repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento);
 
             var pacientes = repPaciente.obterPacientes("pedro");
 

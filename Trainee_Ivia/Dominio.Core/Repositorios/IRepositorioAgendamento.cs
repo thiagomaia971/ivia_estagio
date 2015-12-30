@@ -9,9 +9,11 @@ namespace Dominio.Core.Repositorios
 {
     public interface IRepositorioAgendamento
     {
-        IList<Agendamento> obterAgendamentos();
-        IList<Agendamento> obterAgendamentos(DateTime dia);
-        IList<Agendamento> obterAgendamentos(DateTime dia, ETipoDeTratamento tipo);
+        List<Agendamento> obterAgendamentos();
+        List<Agendamento> obterAgendamentos(DateTime dia);
+        List<Agendamento> obterAgendamentos(DateTime dia, ETipoDeTratamento tipo);
+        List<Agendamento> obterAgendamentos(string nome);
+        List<Agendamento> obterAgendamentos(string protocolo, DateTime dia);
         void incluirAgendamento(Agendamento agendamento);
     }
 }
