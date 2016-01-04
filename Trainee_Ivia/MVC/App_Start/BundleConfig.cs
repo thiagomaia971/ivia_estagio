@@ -15,7 +15,7 @@ namespace MVC
                         "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/jquery.unobtrusive-ajax.js",
                         "~/Scripts/jquery.validate.js",
-                        "~/Scripts/cadastro-paciente.js"));
+                        "~/Scripts/Agendamento.js"));
 
             /*bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));

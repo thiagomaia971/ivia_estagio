@@ -1,22 +1,25 @@
-﻿@model MVC.ViewModel.PacienteViewModel
+﻿@model MVC.ViewModel.AgendamentoViewModel
 
 <div class="panel-body">
     <table class="table table-hover table-responsive">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nome</th>
+                <th>Nome do Paciente</th>
+                <th>Dia do agendamento</th>
                 <th>Tipo de Tratamento</th>
             </tr>
         </thead>
+
         
         <tbody>
-            @foreach (var paciente in Model.Pacientes)
+            @foreach (var agendamento in Model.ListaDeAgendamento)
             {
                 <tr>
-                    <td>@paciente.PacienteId</td>
-                    <td>@paciente.Nome</td>
-                    <td>@paciente.TipoTratamento</td>
+                    <td>@agendamento.Id</td>
+                    <td>@agendamento.Paciente.Nome</td>
+                    <td>@agendamento.DiaDoAgendamento</td>
+                    <td>@agendamento.TipoDeTratamento</td>
                 </tr>
             }
         </tbody>

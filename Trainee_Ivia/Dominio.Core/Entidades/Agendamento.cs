@@ -9,8 +9,8 @@ namespace Dominio.Core.Entidades
     public class Agendamento
     {
         public int Id { get; set; }
-        public Paciente Paciente { get; set; }
         public int PacienteId { get; set; }
+        public virtual Paciente Paciente { get; set; }
         public DateTime DiaDoAgendamento { get; set; }
         public ETipoDeTratamento TipoDeTratamento { get; set; }
 

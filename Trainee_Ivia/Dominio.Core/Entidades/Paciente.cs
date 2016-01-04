@@ -11,7 +11,7 @@ namespace Dominio.Core.Entidades
         public int Id { get; set; }
         public String Protocolo { get; set; }
         public String Nome { get; set; }
-
+        
         public Paciente()
         {
 

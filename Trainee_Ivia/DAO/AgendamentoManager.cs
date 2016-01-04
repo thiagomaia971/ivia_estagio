@@ -26,8 +26,7 @@ namespace DAO
         {
             if (searchEntity == null) throw new ArgumentNullException("searchEntity");
             List<Agendamento> listaAgendamento = new List<Agendamento>();
-            
-            if(searchEntity.DiaDoAgendamento != null)
+            if (searchEntity.DiaDoAgendamento != null && searchEntity.DiaDoAgendamento.Year!=1)
             {
                 if (!String.IsNullOrEmpty(searchEntity.Paciente.Protocolo))
                 {

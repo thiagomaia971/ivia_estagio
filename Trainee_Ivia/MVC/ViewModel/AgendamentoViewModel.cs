@@ -7,7 +7,7 @@ using System.Web;
 
 namespace MVC.ViewModel
 {
-    public class PacienteViewModel
+    public class AgendamentoViewModel
     {
 
         public List<Agendamento> ListaDeAgendamento { get; set; }
@@ -15,13 +15,16 @@ namespace MVC.ViewModel
         public String NameOrProtocol { get; set; }
 
         public string EventCommand { get; set; }
+        public string Mode { get; set; }
+        public bool isValid { get; set; }
         public bool IsListAreaVisible { get; set; }
         public bool isSearchAreaVisible { get; set; }
 
-        public PacienteViewModel()
+        public AgendamentoViewModel()
         {
             ListaDeAgendamento = new List<Agendamento>();
             SearchEntity = new Agendamento();
+            SearchEntity.Paciente = new Paciente();
 
             Start();
         }
@@ -36,13 +39,16 @@ namespace MVC.ViewModel
 
         public void GetAgendamentos()
         {
-            if (isProtocol(NameOrProtocol))
+            if (!String.IsNullOrEmpty(NameOrProtocol))
             {
-                SearchEntity.Paciente.Protocolo = NameOrProtocol;
-            }
-            else
-            {
-                SearchEntity.Paciente.Nome = NameOrProtocol;
+                if (isProtocol(NameOrProtocol))
+                {
+                    SearchEntity.Paciente.Protocolo = NameOrProtocol;
+                }
+                else
+                {
+                    SearchEntity.Paciente.Nome = NameOrProtocol;
+                }
             }
             AgendamentoManager agendamentoManager = new AgendamentoManager();
             ListaDeAgendamento = agendamentoManager.GetAgendamentos(SearchEntity);
@@ -67,10 +73,8 @@ namespace MVC.ViewModel
             switch (EventCommand.ToLower())
             {
                 case "lista":
-
-                    break;
-
                 case "pesquisar":
+                    GetAgendamentos();
 
                     break;
 

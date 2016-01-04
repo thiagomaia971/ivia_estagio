@@ -1,24 +1,58 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+.navbar-ligthgreen{
+    background-color: /* rgb(76, 255, 0);*/#9ACD32;
+    border: 1px solid gray;
+    opacity:1;
+    background-image: url("res/pageBackground.png");
+
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+#titulo-label{
+    width: 300px;
+    height: 500px;
+    font-size: 1.6em;
+    margin: auto 120px;
+    padding-top: 20px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+
+.labels{
+    font-size: 1.9em;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+#nav-tolbar{
+    background-color: #9ACD32;
+}
+
+#footer{
+    font-size: 1.3em;
+    color: black;
+}
+ 
+body{
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-image: url("res/pageBackground.png");
+}
+
+.panel-lightgreen {
+  border-color: #9ACD32;
+}
+.panel-lightgreen > .panel-heading {
+  color: white;
+  font-size: 1.45em;
+  background-color: #9ACD32;
+  border-color: #9ACD32;
+  
+    background-image: url("res/pageBackground.png");
+}
+.panel-lightgreen > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #9ACD32;
+}
+.panel-lightgreen > .panel-heading .badge {
+  color: black;
+  background-color: #9ACD32;
+}
+.panel-lightgreen > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #9ACD32;
 }
