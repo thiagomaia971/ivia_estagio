@@ -13,7 +13,8 @@ namespace Dominio.Core.Repositorios
         List<Agendamento> obterAgendamentos(DateTime dia);
         List<Agendamento> obterAgendamentos(DateTime dia, ETipoDeTratamento tipo);
         List<Agendamento> obterAgendamentos(string nome);
-        List<Agendamento> obterAgendamentos(string protocolo, DateTime dia);
+        List<Agendamento> obterAgendamentosPorProtocolo(string protocolo, DateTime dia);
+        List<Agendamento> obterAgendamentosPorProtocolo(string protocolo);
         void incluirAgendamento(Agendamento agendamento);
     }
 }

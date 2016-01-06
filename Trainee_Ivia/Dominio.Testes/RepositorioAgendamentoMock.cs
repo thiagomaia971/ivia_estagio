@@ -82,5 +82,15 @@ namespace Dominio.Testes
 
             return lista.FindAll(a => a.Paciente.Protocolo.Equals(protocolo));
         }
+
+        public List<Agendamento> obterAgendamentosPorProtocolo(string protocolo, DateTime dia)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Agendamento> obterAgendamentosPorProtocolo(string protocolo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

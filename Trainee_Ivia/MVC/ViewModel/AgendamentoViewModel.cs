@@ -56,13 +56,12 @@ namespace MVC.ViewModel
 
         private bool isProtocol(String np)
         {
-            foreach(var letra in np)
+            foreach(char letra in np)
             {
-                int n;
-                if(int.TryParse(""+letra, out n))
-                {
-                    return true;
-                }
+                int i = Convert.ToInt32(letra);
+
+                if (i <= 57 && i >= 48) return true;
+                    
             }
 
             return false;

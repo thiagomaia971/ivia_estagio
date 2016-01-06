@@ -30,7 +30,7 @@ namespace DAO
             {
                 if (!String.IsNullOrEmpty(searchEntity.Paciente.Protocolo))
                 {
-                    listaAgendamento = repAgendamento.obterAgendamentos(
+                    listaAgendamento = repAgendamento.obterAgendamentosPorProtocolo(
                         searchEntity.Paciente.Protocolo, searchEntity.DiaDoAgendamento);
                 }
                 else
@@ -49,6 +49,9 @@ namespace DAO
                 if (!string.IsNullOrEmpty(searchEntity.Paciente.Nome))
                 {
                     listaAgendamento = repAgendamento.obterAgendamentos(searchEntity.Paciente.Nome);
+                }else if (!string.IsNullOrEmpty(searchEntity.Paciente.Protocolo))
+                {
+                    listaAgendamento = repAgendamento.obterAgendamentosPorProtocolo(searchEntity.Paciente.Protocolo);
                 }
                 else
                 {
