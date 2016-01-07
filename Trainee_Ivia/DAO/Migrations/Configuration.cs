@@ -15,19 +15,8 @@ namespace DAO.Migrations
 
         protected override void Seed(DAO.Contexto context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-            context.Pacientes.AddOrUpdate(p => p.Nome,
+            
+            context.Pacientes.AddOrUpdate(
                 new Paciente { Protocolo = "1", Nome = "joão" },
                 new Paciente { Protocolo = "2", Nome = "rebeca" },
                 new Paciente { Protocolo = "3", Nome = "roberto" },
@@ -43,21 +32,20 @@ namespace DAO.Migrations
             context.SaveChanges();
 
             var data = DateTime.Now.AddDays(5);
-            var pacientes = context.Pacientes.ToList();
             
-            context.Agendamentos.AddOrUpdate(p => p.DiaDoAgendamento,
-                new Agendamento { PacienteId = pacientes[0].Id, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
-                new Agendamento { PacienteId = pacientes[1].Id, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
-                new Agendamento { PacienteId = pacientes[2].Id, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
-                new Agendamento { PacienteId = pacientes[3].Id, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
-                new Agendamento { PacienteId = pacientes[4].Id, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
-                new Agendamento { PacienteId = pacientes[5].Id, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
-                new Agendamento { PacienteId = pacientes[6].Id, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
-                new Agendamento { PacienteId = pacientes[7].Id, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
-                new Agendamento { PacienteId = pacientes[8].Id, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
-                new Agendamento { PacienteId = pacientes[9].Id, DiaDoAgendamento = DateTime.Now.AddHours(2), TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia }
+            context.Agendamentos.AddOrUpdate(
+                new Agendamento { PacienteId = 1, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
+                new Agendamento { PacienteId = 2, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
+                new Agendamento { PacienteId = 3, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
+                new Agendamento { PacienteId = 4, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
+                new Agendamento { PacienteId = 5, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
+                new Agendamento { PacienteId = 6, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
+                new Agendamento { PacienteId = 7, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
+                new Agendamento { PacienteId = 8, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
+                new Agendamento { PacienteId = 9, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia },
+                new Agendamento { PacienteId = 10, DiaDoAgendamento = DateTime.Now.AddHours(2), TipoDeTratamento = ETipoDeTratamento.quimioterapiaDia }
             );
-           
+
         }
     }
 }

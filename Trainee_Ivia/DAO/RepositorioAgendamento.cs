@@ -71,7 +71,15 @@ namespace DAO
             {
                 throw new ArgumentNullException("protocolo");
             }
-            return _ctx.Agendamentos.Where(a => a.Paciente.Protocolo.Equals(protocolo)).ToList();
+            List<Agendamento> lista;
+            
+            lista = _ctx.Agendamentos.Where(a => a.Paciente.Protocolo.Contains(protocolo)).ToList();
+
+            if (lista.Count != 0)
+            {
+                lista = lista.FindAll(p => p.Paciente.Protocolo.Equals(protocolo));
+            }
+            return lista;
         }
 
         public List<Agendamento> obterAgendamentosPorProtocolo(string protocolo, DateTime dia)
@@ -83,11 +91,17 @@ namespace DAO
 
             if (dia == null) throw new ArgumentNullException("dia");
 
-            return _ctx.Agendamentos.Where(a => a.Paciente.Protocolo.Equals(protocolo)
+            var lista = _ctx.Agendamentos.Where(a => a.Paciente.Protocolo.Contains(protocolo)
                 && a.DiaDoAgendamento.Day == dia.Day
                 && a.DiaDoAgendamento.Month == dia.Month
                 && a.DiaDoAgendamento.Year == dia.Year
             ).ToList();
+
+            if (lista.Count != 0)
+            {
+                lista = lista.FindAll(p => p.Paciente.Protocolo.Equals(protocolo));
+            }
+            return lista;
         }
     }
 }

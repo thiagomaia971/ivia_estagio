@@ -20,6 +20,8 @@ namespace DAO
             contexto = new Contexto();
             repAgendamento = new RepositorioAgendamento(contexto);
             servicoAgendamento = new ServicoAgendamento(repAgendamento);
+
+           
         }
 
         public List<Agendamento> GetAgendamentos(Agendamento searchEntity)
@@ -39,7 +41,7 @@ namespace DAO
                     if (!String.IsNullOrEmpty(searchEntity.Paciente.Nome))
                     {
                         listaAgendamento = listaAgendamento.FindAll(
-                            a => a.Paciente.Nome.Equals(searchEntity.Paciente.Nome));
+                            a => a.Paciente.Nome.Contains(searchEntity.Paciente.Nome));
                     }
 
                 }
