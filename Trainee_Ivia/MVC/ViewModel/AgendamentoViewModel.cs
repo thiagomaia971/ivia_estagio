@@ -19,12 +19,16 @@ namespace MVC.ViewModel
         public bool isValid { get; set; }
         public bool IsListAreaVisible { get; set; }
         public bool isSearchAreaVisible { get; set; }
-
+        public bool isOpcaoAgendamentoAreaVisible { get; set; }
+        public bool isReagendamentoAreaVisible { get; set; }
+        public Delegate handleRequest { get; set; }
+        
         public AgendamentoViewModel()
         {
             ListaDeAgendamento = new List<Agendamento>();
             SearchEntity = new Agendamento();
             SearchEntity.Paciente = new Paciente();
+            handleRequest = new Action(HandleRequest);
 
             Start();
         }
@@ -69,6 +73,7 @@ namespace MVC.ViewModel
 
         public void HandleRequest()
         {
+            Console.WriteLine(EventCommand);
             switch (EventCommand.ToLower())
             {
                 case "lista":
@@ -79,6 +84,10 @@ namespace MVC.ViewModel
 
                 case "imprimir":
 
+                    break;
+
+                case "opcao":
+                    isOpcaoAgendamentoAreaVisible = true;
                     break;
             }
         }

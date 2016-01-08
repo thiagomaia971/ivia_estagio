@@ -1,10 +1,53 @@
-﻿
-.navbar-ligthgreen{
+﻿.navbar-ligthgreen{
     background-color: /* rgb(76, 255, 0);*/#9ACD32;
-    border: 1px solid gray;
     opacity:1;
     background-image: url("res/pageBackground.png");
 
+}
+
+.navbar-fixed-top{
+    height: 6em;
+}
+
+#nav-tolbar{
+    background-color: #9ACD32;
+    height: 2em;
+}
+ 
+body{
+    padding-top: 110px;
+    padding-bottom: 110px;
+    background-image: url("res/pageBackground.png");
+}
+
+.icone{
+    height: 4.5em;
+    width: 4.5em;
+    background-image: url("res/Logo.png");
+    background-size: 4.7em;
+    border: none;
+    color: transparent;
+    background-color: transparent;
+    margin-top: -17px;
+    background-repeat: no-repeat;
+}
+
+.modal{
+    padding-right: 500px;
+}
+
+.hover-row-color:hover{
+    background-color: yellowgreen;
+    opacity: 0.8;
+}
+
+.hover-row-text:hover{
+    opacity: 1;
+}
+
+.modal-row:hover{
+    font-size:18px;
+    transition: linear 0.1s;
 }
 
 #titulo-label{
@@ -20,19 +63,20 @@
     font-size: 1.9em;
 }
 
-#nav-tolbar{
-    background-color: #9ACD32;
-}
 
 #footer{
     font-size: 1.3em;
     color: black;
 }
- 
-body{
-    padding-top: 70px;
-    padding-bottom: 70px;
-    background-image: url("res/pageBackground.png");
+
+.btn-success{
+    background-color:#9ACD32;
+    transition: linear 0.5s;
+}
+.btn-success:hover, .btn-success:focus{
+    background-color: rgb(251, 234, 10);
+    color: black;
+    transition: linear 0.5s;
 }
 
 .panel-lightgreen {

@@ -1,7 +1,7 @@
 ﻿@model MVC.ViewModel.AgendamentoViewModel
 
 <div class="panel-body">
-    <table class="table table-hover table-responsive">
+    <table class="table table-responsive">
         <thead>
             <tr>
                 <th>Id</th>
@@ -15,11 +15,11 @@
         <tbody>
             @foreach (var agendamento in Model.ListaDeAgendamento)
             {
-                <tr>
-                    <td>@agendamento.Id</td>
-                    <td>@agendamento.Paciente.Nome</td>
-                    <td>@agendamento.DiaDoAgendamento</td>
-                    <td>@agendamento.TipoDeTratamento</td>
+                <tr class="hover-row-color modal-row data-pdsa-action="opcao">
+                    <td class="hover-row-text">@agendamento.Id</td>
+                    <td class="hover-row-text">@agendamento.Paciente.Nome</td>
+                    <td class="hover-row-text">@agendamento.DiaDoAgendamento</td>
+                    <td class="hover-row-text">@agendamento.TipoDeTratamento</td>
                 </tr>
             }
         </tbody>
