@@ -88,6 +88,14 @@ namespace MVC.ViewModel
 
                 case "opcao":
                     isOpcaoAgendamentoAreaVisible = true;
+                    isReagendamentoAreaVisible = false;
+                    GetAgendamentos();
+                    break;
+
+                case "reagendamento":
+                    isOpcaoAgendamentoAreaVisible = false;
+                    isReagendamentoAreaVisible = true;
+                    GetAgendamentos();
                     break;
             }
         }

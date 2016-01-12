@@ -4,12 +4,16 @@
     ViewBag.Title = "Lista de Pacientes";
 }
 
+
+
+
 @using (Ajax.BeginForm(
     new AjaxOptions
     {
         HttpMethod = "post",
         InsertionMode = InsertionMode.Replace,
-        UpdateTargetId = "list-container"
+        
+        UpdateTargetId =  "list-container"
     }))
 {
     <!-- BEGIN HIDDEN BLOCK -->
@@ -17,68 +21,6 @@
     @Html.HiddenFor(a => a.Mode)
     @*@Html.HiddenFor(a => a.handleRequest)*@
     <!-- END HIDDEN BLOCK-->
-
-    <!-- Modal Opções do Paciente -->
-    <div id="modalOpcaoPaciente" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-
-            <!-- Modal Reagendamento -->
-            <div id="modalReagendamento" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-lg">
-
-                    if (Model.isOpa)
-                    {
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Opções do Agendamento</h4>
-                        </div>
-                        <div class="modal-body">
-
-
-                            <button id="btnPrint" class="btn btn-success col-lg-offset-10 reagendar" data-pdsa-action="reagendar">
-                                <span class="glyphicon glyphicon-calendar"></span> Reagendar
-                            </button>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                    }
-
-                    if (Model.EventCommand.Equals("reagendamento"))
-                    {
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Reagendamento</h4>
-                        </div>
-                        <div class="modal-body">
-
-
-                            <button id="btnPrint" class="btn btn-success col-lg-offset-10 reagendar">
-                                <span class="glyphicon glyphicon-calendar"></span> Reagendar
-                            </button>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                    }
-                </div>
-            </div>
-
-
-
-
-        </div>
-    </div>
-
-
-
 
 
     <!-- BEGIN SEARCH BLOCK -->
@@ -245,6 +187,7 @@
         <div id="list-container" class="panel panel-lightgreen">
 
             @Html.Partial("_Pacientes", Model)
+            @Html.Partial("_Modals", Model)
 
         </div>
     }

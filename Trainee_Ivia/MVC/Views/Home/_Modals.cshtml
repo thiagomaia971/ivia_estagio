@@ -1,0 +1,58 @@
+﻿@Model MVC.ViewModel.AgendamentoViewModel
+
+@Ajax.BeginForm( new AjaxOptions {
+    HttpMethod = "post",
+    InsertionMode = InsertionMode.Replace,
+
+    UpdateTargetId = "modal"
+})
+{
+       <!-- Modals -->
+    <div id="modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal Opção Agendamento -->
+            if (true)
+            {
+            <div class="modal-content">
+                <div class="modal-header">
+                    Opções do Agendamento
+                </div>
+
+                <div class="modal-body">
+                    <div class="btn btn-success reagendar">
+                        Reagendar
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+
+                </div>
+            </div>
+            }
+
+
+            <!-- Modal Reagendamento -->
+            if (false)
+                {
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                    </div>
+
+                    <div class="modal-body">
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+
+}

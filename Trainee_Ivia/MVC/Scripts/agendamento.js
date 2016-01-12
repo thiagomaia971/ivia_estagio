@@ -7,6 +7,18 @@
         $("form").submit();
     });
 
+    $('.modal-row').on("click", function () {
+        $("#EventCommand").val($(this).attr("opcao"));
+        $("#modal").modal('show');
+    });
+
+    $('.reagendar').on("click", function () {
+        $("#EventCommand").val($(this).attr("reagendamento"));
+
+    })
+    /*
+    $("#modal").
+
     $(".reagendar").on("click", function () {
         $("#EventCommand").val("reagendamento");
         $('#modalReagendamento').modal('show');
@@ -16,6 +28,7 @@
         $('#modalOpcaoPaciente').focus();
     });
 
+    
     $(".modal-row").on("click", function () {
         $("#EventCommand").val("opcao");
         $('#modalOpcaoPaciente').modal('show');
@@ -23,5 +36,5 @@
     });
     $('#modalOpcaoPaciente').on('shown.bs.modal', function () {
         $('#modalOpcaoPaciente').focus();
-    });
+    });*/
 });
