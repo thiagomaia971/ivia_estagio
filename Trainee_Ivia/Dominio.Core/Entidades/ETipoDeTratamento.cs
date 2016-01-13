@@ -2,6 +2,6 @@
 {
     public enum ETipoDeTratamento
     {
-        quimioterapiaDia = 1, quimioterapiaSequencial = 2,intercorrencia = 3, procedimento = 4
+        Opcao = 0, Quimioterapia_Dia = 1, Quimioterapia_Sequencial = 2, Procedimento = 3, Intercorrencia = 4
     }
 }

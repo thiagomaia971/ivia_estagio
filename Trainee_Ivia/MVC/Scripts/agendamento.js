@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    var event = $("#EventCommand").val($(this).attr("data-pdsa-action"));
+    
     $("[data-pdsa-action]").on("click", function (e) {
         e.preventDefault();
 
@@ -7,34 +7,30 @@
         $("form").submit();
     });
 
-    $('.modal-row').on("click", function () {
-        $("#EventCommand").val($(this).attr("opcao"));
-        $("#modal").modal('show');
-    });
+    $("[data-modal-service]").on("click", function (e) {
+        e.preventDefault();
+        //$("#NovoAgendamento_Paciente_Protocolo").val($(this).);
+        dataModal = $(this).attr("data-modal-service");
 
-    $('.reagendar').on("click", function () {
-        $("#EventCommand").val($(this).attr("reagendamento"));
+        switch (dataModal) {
+            case "opcao":
+                $("#modal").modal('show');
+                $("#modal-opcaoAgendamento").show();
+                $("#modal-reagendamento").hide();
+                break;
 
-    })
-    /*
-    $("#modal").
+            case "reagendamento":
+                $("#modal-opcaoAgendamento").hide();
+                $("#modal-reagendamento").show();
+                break;
 
-    $(".reagendar").on("click", function () {
-        $("#EventCommand").val("reagendamento");
-        $('#modalReagendamento').modal('show');
-        event;
-    });
-    $('.reagendar').on('shown.bs.modal', function () {
-        $('#modalOpcaoPaciente').focus();
-    });
+            case "voltar":
+                $("#modal-opcaoAgendamento").show();
+                $("#modal-reagendamento").hide();
+                break;
+        }
 
-    
-    $(".modal-row").on("click", function () {
-        $("#EventCommand").val("opcao");
-        $('#modalOpcaoPaciente').modal('show');
-        $('#handleRequest');
+        $("form").submit();
     });
-    $('#modalOpcaoPaciente').on('shown.bs.modal', function () {
-        $('#modalOpcaoPaciente').focus();
-    });*/
+   
 });

@@ -14,7 +14,7 @@
         <tbody>
             @foreach (var agendamento in Model.ListaDeAgendamento)
             {
-                <tr class="hover-row-color modal-row" data-pdsa-action="opcao">
+                <tr class="hover-row-color" data-modal-service="opcao">
                     <td class="hover-row-text">@agendamento.Id</td>
                     <td class="hover-row-text">@agendamento.Paciente.Nome</td>
                     <td class="hover-row-text">@agendamento.DiaDoAgendamento</td>

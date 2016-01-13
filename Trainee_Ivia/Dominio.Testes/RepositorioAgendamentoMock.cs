@@ -28,10 +28,10 @@ namespace Dominio.Testes
                 var data = DateTime.Today;
                 data = data.AddDays(5);
 
-                lista.Add(new Agendamento(paciente,data,ETipoDeTratamento.quimioterapiaDia));
+                lista.Add(new Agendamento(paciente,data,ETipoDeTratamento.Quimioterapia_Dia));
             }
             lista.Add(new Agendamento(pacientes.Last(), 
-                DateTime.Now.AddHours(2), ETipoDeTratamento.quimioterapiaDia));
+                DateTime.Now.AddHours(2), ETipoDeTratamento.Quimioterapia_Dia));
         }
 
         public void incluirAgendamento(Agendamento agendamento)

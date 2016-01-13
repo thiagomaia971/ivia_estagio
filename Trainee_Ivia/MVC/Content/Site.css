@@ -32,8 +32,13 @@ body{
     background-repeat: no-repeat;
 }
 
+
 .modal{
     padding-right: 500px;
+}
+
+.modal-footer{
+    margin-top: 30px;
 }
 
 .hover-row-color:hover{

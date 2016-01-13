@@ -12,6 +12,7 @@ namespace MVC.ViewModel
 
         public List<Agendamento> ListaDeAgendamento { get; set; }
         public Agendamento SearchEntity { get; set; }
+        public Agendamento NovoAgendamento { get; set; }
         public String NameOrProtocol { get; set; }
 
         public string EventCommand { get; set; }
@@ -19,14 +20,14 @@ namespace MVC.ViewModel
         public bool isValid { get; set; }
         public bool IsListAreaVisible { get; set; }
         public bool isSearchAreaVisible { get; set; }
-        public bool isOpcaoAgendamentoAreaVisible { get; set; }
-        public bool isReagendamentoAreaVisible { get; set; }
         public Delegate handleRequest { get; set; }
         
         public AgendamentoViewModel()
         {
             ListaDeAgendamento = new List<Agendamento>();
             SearchEntity = new Agendamento();
+            NovoAgendamento = new Agendamento();
+            NovoAgendamento.DiaDoAgendamento = new DateTime();
             SearchEntity.Paciente = new Paciente();
             handleRequest = new Action(HandleRequest);
 
@@ -85,18 +86,7 @@ namespace MVC.ViewModel
                 case "imprimir":
 
                     break;
-
-                case "opcao":
-                    isOpcaoAgendamentoAreaVisible = true;
-                    isReagendamentoAreaVisible = false;
-                    GetAgendamentos();
-                    break;
-
-                case "reagendamento":
-                    isOpcaoAgendamentoAreaVisible = false;
-                    isReagendamentoAreaVisible = true;
-                    GetAgendamentos();
-                    break;
+                    
             }
         }
     }

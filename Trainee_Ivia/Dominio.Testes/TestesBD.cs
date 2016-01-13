@@ -48,7 +48,7 @@ namespace Dominio.Testes
 
             var paciente = repPaciente.obterPaciente("1");
             var data = DateTime.Now.AddDays(5);
-            var agendamento = new Agendamento(paciente,data, ETipoDeTratamento.quimioterapiaDia);
+            var agendamento = new Agendamento(paciente,data, ETipoDeTratamento.Quimioterapia_Dia);
             var funfou = servicoAgendamento.registrarAgendamento(agendamento);
 
             //assert
@@ -73,7 +73,7 @@ namespace Dominio.Testes
             var paciente = repPaciente.obterPaciente("1");
             var data = DateTime.Now;
             data = data.AddDays(5);
-            var agendamento = new Agendamento(paciente, data, ETipoDeTratamento.quimioterapiaDia);
+            var agendamento = new Agendamento(paciente, data, ETipoDeTratamento.Quimioterapia_Dia);
             var funfou = servicoAgendamento.registrarAgendamento(agendamento);
 
             //assert
@@ -158,7 +158,7 @@ namespace Dominio.Testes
             servicoAgendamento = new ServicoAgendamento(repAgendamento);
 
             var agendamentos = repAgendamento.obterAgendamentos
-                (DateTime.Today.AddDays(5),ETipoDeTratamento.quimioterapiaDia);
+                (DateTime.Today.AddDays(5),ETipoDeTratamento.Quimioterapia_Dia);
 
             //assert
             Assert.IsTrue(agendamentos.Count > 0);

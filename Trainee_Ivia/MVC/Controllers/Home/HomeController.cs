@@ -31,11 +31,7 @@ namespace MVC.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                /*if (agendamentoVM.EventCommand == "opcao")
-                {
-                }*/
-                    return PartialView("_Modals", agendamentoVM);
-                //return PartialView("_Pacientes", agendamentoVM);
+                return PartialView("_Pacientes", agendamentoVM);
             }
 
             return View(agendamentoVM);
