@@ -13,22 +13,23 @@ namespace DAO
     {
         ServicoAgendamento servicoAgendamento;
         IRepositorioAgendamento repAgendamento;
+        IRepositorioPaciente repPaciente;
         Contexto contexto;
 
         public AgendamentoManager()
         {
             contexto = new Contexto();
             repAgendamento = new RepositorioAgendamento(contexto);
-            servicoAgendamento = new ServicoAgendamento(repAgendamento);
-
-           
+            repPaciente = new RepositorioPaciente(contexto);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento, repPaciente);
+            
         }
 
         public List<Agendamento> GetAgendamentos(Agendamento searchEntity)
         {
             if (searchEntity == null) throw new ArgumentNullException("searchEntity");
             List<Agendamento> listaAgendamento = new List<Agendamento>();
-            if (searchEntity.DiaDoAgendamento != null && searchEntity.DiaDoAgendamento.Year!=1)
+            if (searchEntity.DiaDoAgendamento != null && searchEntity.DiaDoAgendamento.Year != 1)
             {
                 if (!String.IsNullOrEmpty(searchEntity.Paciente.Protocolo))
                 {
@@ -51,7 +52,8 @@ namespace DAO
                 if (!string.IsNullOrEmpty(searchEntity.Paciente.Nome))
                 {
                     listaAgendamento = repAgendamento.obterAgendamentos(searchEntity.Paciente.Nome);
-                }else if (!string.IsNullOrEmpty(searchEntity.Paciente.Protocolo))
+                }
+                else if (!string.IsNullOrEmpty(searchEntity.Paciente.Protocolo))
                 {
                     listaAgendamento = repAgendamento.obterAgendamentosPorProtocolo(searchEntity.Paciente.Protocolo);
                 }
@@ -65,5 +67,21 @@ namespace DAO
 
             return listaAgendamento;
         }
+
+        public void AdicionarAgendamento(Agendamento agendamento)
+        {
+            if (agendamento == null)
+            {
+                throw new ArgumentNullException("agendamento");
+            }
+            else
+            {
+                if (agendamento.DiaDoAgendamento.CompareTo(DateTime.Now) > 0)
+                {
+                    servicoAgendamento.registrarAgendamento(agendamento);
+                }
+            }
+        }
     }
+
 }

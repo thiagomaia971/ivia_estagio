@@ -86,6 +86,11 @@ namespace MVC.ViewModel
                 case "imprimir":
 
                     break;
+
+                case "salvar":
+                    AgendamentoManager agendamentoManager = new AgendamentoManager();
+                    agendamentoManager.AdicionarAgendamento(NovoAgendamento);
+                    break;
                     
             }
         }

@@ -4,7 +4,7 @@
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Protocolo</th>
                 <th>Nome do Paciente</th>
                 <th>Dia do agendamento</th>
                 <th>Tipo de Tratamento</th>
@@ -15,7 +15,7 @@
             @foreach (var agendamento in Model.ListaDeAgendamento)
             {
                 <tr class="hover-row-color" data-modal-service="opcao">
-                    <td class="hover-row-text">@agendamento.Id</td>
+                    <td class="hover-row-text protocolo">@agendamento.Paciente.Protocolo</td>
                     <td class="hover-row-text">@agendamento.Paciente.Nome</td>
                     <td class="hover-row-text">@agendamento.DiaDoAgendamento</td>
                     <td class="hover-row-text">@agendamento.TipoDeTratamento</td>

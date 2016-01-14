@@ -8,10 +8,15 @@
     });
 
     $("[data-modal-service]").on("click", function (e) {
-        e.preventDefault();
-        //$("#NovoAgendamento_Paciente_Protocolo").val($(this).);
-        dataModal = $(this).attr("data-modal-service");
+        $("#EventCommand").val($(this).attr("data-modal-service"));
 
+        if ($("#EventCommand").val() == "opcao") {
+            alert("opcao");
+            $("#NovoAgendamento_Paciente_Protocolo").val($(this).find("td.protocolo").text());
+        }
+
+        
+        var dataModal = $(this).attr("data-modal-service");
         switch (dataModal) {
             case "opcao":
                 $("#modal").modal('show');
@@ -30,7 +35,7 @@
                 break;
         }
 
-        $("form").submit();
+        //$("form").submit();
     });
    
 });

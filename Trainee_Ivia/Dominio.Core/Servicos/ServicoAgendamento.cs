@@ -11,15 +11,22 @@ namespace Dominio.Core.Servicos
     public class ServicoAgendamento
     {
         IRepositorioAgendamento repAgendamento;
+        IRepositorioPaciente repPaciente;
 
-        public ServicoAgendamento(IRepositorioAgendamento repAgendamento)
+        public ServicoAgendamento(IRepositorioAgendamento repAgendamento, IRepositorioPaciente repPaciente)
         {
             if(repAgendamento == null)
             {
                 throw new ArgumentNullException("repAgendamento");
             }
 
+            if(repPaciente == null)
+            {
+                throw new ArgumentNullException("repPaciente");
+            }
+
             this.repAgendamento = repAgendamento;
+            this.repPaciente = repPaciente;
         }
 
         public bool registrarAgendamento(Agendamento agendamento)
@@ -36,6 +43,9 @@ namespace Dominio.Core.Servicos
             {
                 return false;
             }
+            
+            agendamento.Paciente = repPaciente.obterPaciente(agendamento.Paciente.Protocolo);
+            agendamento.PacienteId = agendamento.Paciente.Id;
 
             repAgendamento.incluirAgendamento(agendamento);
 

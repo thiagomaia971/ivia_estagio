@@ -6,13 +6,13 @@
 
 
 @using (Ajax.BeginForm(
-                new AjaxOptions
-                {
-                    HttpMethod = "post",
-                    InsertionMode = InsertionMode.Replace,
+    new AjaxOptions
+    {
+        HttpMethod = "post",
+        InsertionMode = InsertionMode.Replace,
 
-                    UpdateTargetId = "list-container"
-                }))
+        UpdateTargetId = "list-container"
+    }))
 {
     <!-- BEGIN HIDDEN BLOCK -->
     @Html.HiddenFor(a => a.EventCommand)
@@ -65,7 +65,7 @@
                                     }, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        <div id="btnSalvar" class="btn btn-success col-md-offset-4 col-md-3">
+                        <div id="btnSalvar" class="btn btn-success col-md-offset-4 col-md-3" data-pdsa-action="salvar">
                             Salvar
                         </div>
                     </div>

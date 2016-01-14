@@ -19,7 +19,7 @@ namespace Dominio.Testes
             //act
             repPaciente = new RepositorioPacienteMock();
             repAgendamento = new RepositorioAgendamentoMock(repPaciente);
-            servicoAgendamento = new ServicoAgendamento(repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento, repPaciente);
 
             var paciente = repPaciente.obterPaciente("1");
             var data = DateTime.Now.AddDays(5);
@@ -40,7 +40,7 @@ namespace Dominio.Testes
             //act
             repPaciente = new RepositorioPacienteMock();
             repAgendamento = new RepositorioAgendamentoMock(repPaciente);
-            servicoAgendamento = new ServicoAgendamento(repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento, repPaciente);
 
             var paciente = repPaciente.obterPaciente("1");
             var data = DateTime.Now;
@@ -63,7 +63,7 @@ namespace Dominio.Testes
             //act
             repPaciente = new RepositorioPacienteMock();
             repAgendamento = new RepositorioAgendamentoMock(repPaciente);
-            servicoAgendamento = new ServicoAgendamento(repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento, repPaciente);
 
             var agendamentos = repAgendamento.obterAgendamentos(DateTime.Today.AddDays(5));
 
@@ -81,7 +81,7 @@ namespace Dominio.Testes
             //act
             repPaciente = new RepositorioPacienteMock();
             repAgendamento = new RepositorioAgendamentoMock(repPaciente);
-            servicoAgendamento = new ServicoAgendamento(repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento, repPaciente);
 
             var agendamentos = repAgendamento.obterAgendamentos(DateTime.Today);
 
@@ -99,7 +99,7 @@ namespace Dominio.Testes
             //act
             repPaciente = new RepositorioPacienteMock();
             repAgendamento = new RepositorioAgendamentoMock(repPaciente);
-            servicoAgendamento = new ServicoAgendamento(repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento, repPaciente);
 
             var agendamentos = repAgendamento.obterAgendamentos(DateTime.Today.AddDays(5));
 
@@ -117,7 +117,7 @@ namespace Dominio.Testes
             //act
             repPaciente = new RepositorioPacienteMock();
             repAgendamento = new RepositorioAgendamentoMock(repPaciente);
-            servicoAgendamento = new ServicoAgendamento(repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento, repPaciente);
 
             var agendamentos = repAgendamento.obterAgendamentos
                 (DateTime.Today.AddDays(5),ETipoDeTratamento.Quimioterapia_Dia);
@@ -136,7 +136,7 @@ namespace Dominio.Testes
             //act
             repPaciente = new RepositorioPacienteMock();
             repAgendamento = new RepositorioAgendamentoMock(repPaciente);
-            servicoAgendamento = new ServicoAgendamento(repAgendamento);
+            servicoAgendamento = new ServicoAgendamento(repAgendamento, repPaciente);
 
             var pacientes = repPaciente.obterPacientes("pedro");
 
