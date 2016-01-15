@@ -52,7 +52,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         @Html.Label("Dia do Agendamento")
-                        @Html.TextBoxFor(aVM => aVM.NovoAgendamento.DiaDoAgendamento, new { @class = "form-control" })
+                        @Html.TextBoxFor(aVM => aVM.NovoAgendamento.DiaDoAgendamento, new { @type = "date", @class = "form-control" })
                     </div>
                     <div class="form-group">
                         @Html.Label("Tipo de Tratamento")

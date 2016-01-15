@@ -8,10 +8,10 @@
     });
 
     $("[data-modal-service]").on("click", function (e) {
+        e.preventDefault();
         $("#EventCommand").val($(this).attr("data-modal-service"));
-
+        alert("é aqui que é aqui!");
         if ($("#EventCommand").val() == "opcao") {
-            alert("opcao");
             $("#NovoAgendamento_Paciente_Protocolo").val($(this).find("td.protocolo").text());
         }
 

@@ -19,7 +19,7 @@ namespace DAO
 
         public Paciente obterPaciente(string protocolo)
         {
-            return _ctx.Pacientes.Where(p => p.Protocolo.Equals(protocolo)).First();
+            return _ctx.Pacientes.Where(p => p.Protocolo.Contains(protocolo)).First();
         }
 
         public IList<Paciente> obterPacientes()
