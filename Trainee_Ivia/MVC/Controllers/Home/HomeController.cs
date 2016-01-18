@@ -27,12 +27,21 @@ namespace MVC.Controllers
             if (ModelState.IsValid)
             {
                 ModelState.Clear();
+
             }
+            //else
+            //{
+            //    if (Request.IsAjaxRequest())
+            //    {
+            //        return PartialView("_Modal", agendamentoVM);
+            //    }
+            //}
 
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_Pacientes", agendamentoVM);
             }
+            
 
             return View(agendamentoVM);
         }

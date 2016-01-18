@@ -18,8 +18,6 @@ namespace MVC.ViewModel
         public string EventCommand { get; set; }
         public string Mode { get; set; }
         public bool isValid { get; set; }
-        public bool IsListAreaVisible { get; set; }
-        public bool isSearchAreaVisible { get; set; }
         public Delegate handleRequest { get; set; }
         
         public AgendamentoViewModel()
@@ -38,8 +36,7 @@ namespace MVC.ViewModel
         {
             EventCommand = "Lista";
 
-            IsListAreaVisible = true;
-            isSearchAreaVisible = true;
+            isValid = true;
         }
 
         public void GetAgendamentos()
@@ -88,9 +85,12 @@ namespace MVC.ViewModel
                     break;
 
                 case "salvar":
-                    AgendamentoManager agendamentoManager = new AgendamentoManager();
-                    agendamentoManager.AdicionarAgendamento(NovoAgendamento);
-                    GetAgendamentos();
+                    if (isValid)
+                    {
+                        AgendamentoManager agendamentoManager = new AgendamentoManager();
+                        agendamentoManager.AdicionarAgendamento(NovoAgendamento);
+                    }
+                        GetAgendamentos();
                     break;
                     
             }
