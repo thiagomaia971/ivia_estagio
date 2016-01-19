@@ -1,10 +1,25 @@
 ﻿@model MVC.ViewModel.AgendamentoViewModel
+@Scripts.Render("~/Scripts/agendamento_modal.js")
 
-@Scripts.Render("~/bundles/otf")
+<!-- VALIDATION BLOCK-->
+@if (!Model.isValid)
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="modal-validation alert alert-danger alert-dismissable" role="alert">
+                <button type="button" class="close" data-dissmiss="alert">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                    <span class="sr-only">Close</span>
+                </button>
+                @Html.ValidationSummary(false)
+            </div>
+        </div>
+    </div>
+}
 
-
-
-
+<!-- END VALIDATION BLOCK -->
 
 <div class="panel-body">
     <table class="table table-responsive">

@@ -1,22 +1,18 @@
 ﻿@model MVC.ViewModel.AgendamentoViewModel
-@Scripts.Render("~/bundles/otf")
 
-<div class="modal-body">
+
+@if(!Model.isValid){
     <div class="row">
         <div class="col-sm-12">
-            @if (!Model.isValid)
-            {
-
-                <div class="alert alert-danger alert-dismissable" role="alert">
-                    <button type="button" class="close" data-dissmiss="alert">
-                        <span aria-hidden="true">
-                            &times;
-                        </span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    @Html.ValidationSummary(false)
-                </div>
-            }
+            <div class="modal-validation alert alert-danger alert-dismissable" role="alert">
+                <button type="button" class="close" data-dissmiss="alert">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                    <span class="sr-only">Close</span>
+                </button>
+                @Html.ValidationSummary(false)
+            </div>
         </div>
     </div>
-</div>
+}

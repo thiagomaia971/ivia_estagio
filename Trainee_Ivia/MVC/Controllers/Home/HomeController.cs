@@ -21,7 +21,16 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Index(AgendamentoViewModel agendamentoVM)
         {
-            agendamentoVM.isValid = ModelState.IsValid;
+            
+            agendamentoVM.isValid = ModelState.IsValidField("NovoAgendamento");
+
+            var i = ModelState.Select(m => m.Key == "NovoAgendamento").ToList();
+                
+            var a = ModelState.Values
+                .Where(v => v.Errors.Count > 0)
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage);
+
             agendamentoVM.HandleRequest();
 
             if (ModelState.IsValid)
@@ -29,14 +38,7 @@ namespace MVC.Controllers
                 ModelState.Clear();
 
             }
-            //else
-            //{
-            //    if (Request.IsAjaxRequest())
-            //    {
-            //        return PartialView("_Modal", agendamentoVM);
-            //    }
-            //}
-
+           
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_Pacientes", agendamentoVM);
@@ -46,18 +48,6 @@ namespace MVC.Controllers
             return View(agendamentoVM);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+      
     }
 }

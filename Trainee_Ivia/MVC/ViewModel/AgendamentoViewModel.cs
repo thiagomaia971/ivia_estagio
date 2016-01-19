@@ -18,6 +18,7 @@ namespace MVC.ViewModel
         public string EventCommand { get; set; }
         public string Mode { get; set; }
         public bool isValid { get; set; }
+        //public List<> validationFailList { get; set; }
         public Delegate handleRequest { get; set; }
         
         public AgendamentoViewModel()

@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="agendamento.js" />
+/// <reference path="agendamento_modal.js" />
 /// <reference path="bootstrap.min.js" />
 /// <reference path="bootstrap-datetimepicker.min.js" />
 /// <reference path="jquery.unobtrusive-ajax.min.js" />

@@ -13,6 +13,7 @@ namespace Dominio.Core.Entidades
         public int PacienteId { get; set; }
         public virtual Paciente Paciente { get; set; }
 
+        
         [Required(ErrorMessage = "Dia do Agendamento Obrigatório!")]
         public DateTime DiaDoAgendamento { get; set; }
 
