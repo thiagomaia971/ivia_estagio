@@ -21,15 +21,9 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Index(AgendamentoViewModel agendamentoVM)
         {
-            
-            agendamentoVM.isValid = ModelState.IsValidField("NovoAgendamento");
 
-            var i = ModelState.Select(m => m.Key == "NovoAgendamento").ToList();
-                
-            var a = ModelState.Values
-                .Where(v => v.Errors.Count > 0)
-                .SelectMany(v => v.Errors)
-                .Select(e => e.ErrorMessage);
+            agendamentoVM.isValid = true; // ModelState.IsValidField("NovoAgendamento");
+            
 
             agendamentoVM.HandleRequest();
 
@@ -41,7 +35,7 @@ namespace MVC.Controllers
            
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_Pacientes", agendamentoVM);
+                return PartialView("_ListaAgendamentos", agendamentoVM);
             }
             
 

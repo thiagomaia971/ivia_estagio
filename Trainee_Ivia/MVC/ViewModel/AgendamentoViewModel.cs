@@ -13,22 +13,25 @@ namespace MVC.ViewModel
         public List<Agendamento> ListaDeAgendamento { get; set; }
         public Agendamento SearchEntity { get; set; }
         public Agendamento NovoAgendamento { get; set; }
+        public Agendamento CancelAgendamento { get; set; }
         public String NameOrProtocol { get; set; }
 
         public string EventCommand { get; set; }
         public string Mode { get; set; }
         public bool isValid { get; set; }
-        //public List<> validationFailList { get; set; }
-        public Delegate handleRequest { get; set; }
-        
+        public bool IsListMode { get; set; }
+        public bool IsAgendamentoMode { get; set; }
+
         public AgendamentoViewModel()
         {
             ListaDeAgendamento = new List<Agendamento>();
             SearchEntity = new Agendamento();
             NovoAgendamento = new Agendamento();
             NovoAgendamento.DiaDoAgendamento = new DateTime();
+            CancelAgendamento = new Agendamento();
+            CancelAgendamento.DiaDoAgendamento = new DateTime();
+            CancelAgendamento.Paciente = new Paciente();
             SearchEntity.Paciente = new Paciente();
-            handleRequest = new Action(HandleRequest);
 
             Start();
         }
@@ -86,15 +89,29 @@ namespace MVC.ViewModel
                     break;
 
                 case "salvar":
-                    if (isValid)
-                    {
-                        AgendamentoManager agendamentoManager = new AgendamentoManager();
-                        agendamentoManager.AdicionarAgendamento(NovoAgendamento);
-                    }
-                        GetAgendamentos();
+                    salvarAgendamento();
                     break;
-                    
+
+                case "cancelar":
+                    CancelarAgendamento();
+                    break;                    
             }
+        }
+
+        private void CancelarAgendamento()
+        {
+            AgendamentoManager agendamentoManager = new AgendamentoManager();
+            agendamentoManager.getAgendamento(CancelAgendamento).Status = EStatusDeAgendamento.Cancelado;
+        }
+
+        private void salvarAgendamento()
+        {
+            if (isValid)
+            {
+                AgendamentoManager agendamentoManager = new AgendamentoManager();
+                agendamentoManager.AdicionarAgendamento(NovoAgendamento);
+            }
+            GetAgendamentos();
         }
     }
 }

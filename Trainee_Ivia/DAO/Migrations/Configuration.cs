@@ -34,16 +34,16 @@ namespace DAO.Migrations
             var data = DateTime.Now.AddDays(5);
             
             context.Agendamentos.AddOrUpdate(
-                new Agendamento { PacienteId = 1, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia },
-                new Agendamento { PacienteId = 2, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia },
-                new Agendamento { PacienteId = 3, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia },
-                new Agendamento { PacienteId = 4, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia },
-                new Agendamento { PacienteId = 5, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia },
-                new Agendamento { PacienteId = 6, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia },
-                new Agendamento { PacienteId = 7, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia },
-                new Agendamento { PacienteId = 8, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia },
-                new Agendamento { PacienteId = 9, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia },
-                new Agendamento { PacienteId = 10, DiaDoAgendamento = DateTime.Now.AddHours(2), TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia }
+                new Agendamento { PacienteId = 1, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia, Status = EStatusDeAgendamento.Normal },
+                new Agendamento { PacienteId = 3, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia,Status = EStatusDeAgendamento.Normal },
+                new Agendamento { PacienteId = 4, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia,Status = EStatusDeAgendamento.Normal },
+                new Agendamento { PacienteId = 5, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia,Status = EStatusDeAgendamento.Normal },
+                new Agendamento { PacienteId = 2, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia,Status = EStatusDeAgendamento.Normal },
+                new Agendamento { PacienteId = 6, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia,Status = EStatusDeAgendamento.Normal },
+                new Agendamento { PacienteId = 7, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia,Status = EStatusDeAgendamento.Normal },
+                new Agendamento { PacienteId = 8, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia,Status = EStatusDeAgendamento.Normal },
+                new Agendamento { PacienteId = 9, DiaDoAgendamento = data, TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia, Status = EStatusDeAgendamento.Normal },
+                new Agendamento { PacienteId = 10, DiaDoAgendamento = DateTime.Now.AddHours(2), TipoDeTratamento = ETipoDeTratamento.Quimioterapia_Dia, Status = EStatusDeAgendamento.Normal }
             );
 
         }

@@ -25,6 +25,25 @@ namespace DAO
             
         }
 
+        public Agendamento getAgendamento(Agendamento agendamento)
+        {
+            if(agendamento.Paciente != null )
+            {
+                if(agendamento.DiaDoAgendamento != null)
+                {
+                    return repAgendamento.obterAgendamentosPorProtocolo(agendamento.Paciente.Protocolo, agendamento.DiaDoAgendamento).FirstOrDefault();
+                }
+                else
+                {
+                    throw new ArgumentNullException("agendamento.diaDoAgendamento == null");
+                }
+            }
+            else
+            {
+                throw new ArgumentNullException("agendamento.paciente == null");
+            }
+        }
+
         public List<Agendamento> GetAgendamentos(Agendamento searchEntity)
         {
             if (searchEntity == null) throw new ArgumentNullException("searchEntity");

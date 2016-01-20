@@ -18,6 +18,8 @@
     @Html.HiddenFor(a => a.EventCommand)
     @Html.HiddenFor(a => a.Mode)
     @Html.HiddenFor(a => a.NovoAgendamento.Paciente.Protocolo)
+    @Html.HiddenFor(a => a.CancelAgendamento.Paciente.Protocolo);
+    @Html.HiddenFor(a => a.CancelAgendamento.DiaDoAgendamento);
     @Html.HiddenFor(a => a.isValid)
     <!-- END HIDDEN BLOCK-->
 
@@ -146,18 +148,14 @@
     </div>
 
     <!-- END SEARCH BLOCK-->
-
-
-  
-
-
+    
     
     <!-- LIST BLOCK-->
     
+}
     <div id="list-container" class="panel panel-lightgreen">
 
-        @Html.Partial("_Pacientes", Model)
+        @Html.Partial("_ListaAgendamentos", Model)
 
     </div>
-}
 <!-- END LIST BLOCK-->

@@ -1,0 +1,209 @@
+﻿@model MVC.ViewModel.AgendamentoViewModel
+@Scripts.Render("~/Scripts/Project_Scripts/agendamento_ListaAgendamentos.js")
+
+@*@using (Ajax.BeginForm(
+        new AjaxOptions
+        {
+            HttpMethod = "post",
+            InsertionMode = InsertionMode.Replace,
+
+            UpdateTargetId = "list-container"
+        }))
+    {
+
+    }*@
+
+<!-- VALIDATION BLOCK-->
+@*@if (!Model.isValid)
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="modal-validation alert alert-danger alert-dismissable" role="alert">
+                <button type="button" class="close" data-dissmiss="alert">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                    <span class="sr-only">Close</span>
+                </button>
+                @Html.ValidationSummary(false)
+
+            </div>
+        </div>
+    </div>
+}*@
+<!-- END VALIDATION BLOCK -->
+
+<div class="panel-body">
+
+    <div id="tab_qt_dia" class="col-lg-3">
+        <div class=" panel panel-warning">
+
+            <div class="panel-heading">
+                <label for="InputData" class="panel-tittle">Quimioterapia Dia</label>
+            </div>
+
+            <table class="table table-responsive table-bordered ">
+                <thead>
+                    <tr>
+                        <th>Protocolo</th>
+                        <th>Nome do Paciente</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        int total_qt_dia = 0;
+                        foreach (var agendamento in Model.ListaDeAgendamento)
+                        {
+
+                            if ((int)agendamento.TipoDeTratamento == 1)
+                            {
+                                total_qt_dia++;
+                                <tr class="hover-row-color">
+                                    <td class="hover-row-text protocolo">@agendamento.Paciente.Protocolo</td>
+                                    <td class="hover-row-text">@agendamento.Paciente.Nome</td>
+                                    <td data-row-action="cancelar" data-row-protocol=@agendamento.Paciente.Protocolo
+                                        data-row-date=@agendamento.DiaDoAgendamento
+                                        data-row-agendamento=@agendamento>
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="panel-footer">
+                <label for="InputData" class="panel-footer">Total: @total_qt_dia</label>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="tab_qt_seq" class="col-lg-3">
+        <div class=" panel panel-success">
+
+            <div class="panel-heading">
+                <label for="InputData" class="panel-tittle">Quimioterapia Sequencial</label>
+            </div>
+
+            <table class="table table-responsive table-bordered ">
+                <thead>
+                    <tr>
+                        <th>Protocolo</th>
+                        <th>Nome do Paciente</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        int total_qt_seq = 0;
+                        foreach (var agendamento in Model.ListaDeAgendamento)
+                        {
+
+                            if ((int)agendamento.TipoDeTratamento == 2)
+                            {
+                                total_qt_seq++;
+                                <tr class="hover-row-color" data-modal-service="opcao">
+                                    <td class="hover-row-text protocolo">@agendamento.Paciente.Protocolo</td>
+                                    <td class="hover-row-text">@agendamento.Paciente.Nome</td>
+                                    <td data-row-action="cancelar" data-row-protocol=@agendamento.Paciente.Protocolo>
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="panel-footer">
+                <label for="InputData" class="panel-footer">Total: @total_qt_seq</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="tab_intercorrencia" class="col-lg-3">
+        <div class=" panel panel-danger">
+
+            <div class="panel-heading">
+                <label for="InputData" class="panel-tittle">Intercorrência</label>
+            </div>
+
+            <table class="table table-responsive table-bordered ">
+                <thead>
+                    <tr>
+                        <th>Protocolo</th>
+                        <th>Nome do Paciente</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        int total_intercorrencia = 0;
+                        foreach (var agendamento in Model.ListaDeAgendamento)
+                        {
+
+                            if ((int)agendamento.TipoDeTratamento == 4)
+                            {
+                                total_intercorrencia++;
+                                <tr class="hover-row-color" data-modal-service="opcao">
+                                    <td class="hover-row-text protocolo">@agendamento.Paciente.Protocolo</td>
+                                    <td class="hover-row-text">@agendamento.Paciente.Nome</td>
+                                    <td data-row-action="cancelar" data-row-protocol=@agendamento.Paciente.Protocolo>
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="panel-footer">
+                <label for="InputData" class="panel-footer">Total: @total_intercorrencia</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="tab_procedimento" class="col-lg-3">
+        <div class=" panel panel-info">
+
+            <div class="panel-heading">
+                <label for="InputData" class="panel-tittle">Procedimento</label>
+            </div>
+
+            <table class="table table-responsive table-bordered ">
+                <thead>
+                    <tr>
+                        <th>Protocolo</th>
+                        <th>Nome do Paciente</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        int total_procedimento = 0;
+                        foreach (var agendamento in Model.ListaDeAgendamento)
+                        {
+
+                            if ((int)agendamento.TipoDeTratamento == 3)
+                            {
+                                total_procedimento++;
+                                <tr class="hover-row-color" data-modal-service="opcao">
+                                    <td class="hover-row-text protocolo">@agendamento.Paciente.Protocolo</td>
+                                    <td class="hover-row-text">@agendamento.Paciente.Nome</td>
+                                    <td data-row-action="cancelar" data-row-protocol=@agendamento.Paciente.Protocolo>
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="panel-footer">
+                <label for="InputData" class="panel-footer">Total: @total_procedimento</label>
+            </div>
+        </div>
+
+    </div>
+</div>
