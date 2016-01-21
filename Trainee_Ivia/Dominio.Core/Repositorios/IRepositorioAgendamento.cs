@@ -16,5 +16,6 @@ namespace Dominio.Core.Repositorios
         List<Agendamento> obterAgendamentosPorProtocolo(string protocolo, DateTime dia);
         List<Agendamento> obterAgendamentosPorProtocolo(string protocolo);
         void incluirAgendamento(Agendamento agendamento);
+        void incluirStatus(Agendamento agendamento);
     }
 }

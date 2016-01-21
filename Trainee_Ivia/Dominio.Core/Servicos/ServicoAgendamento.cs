@@ -51,7 +51,17 @@ namespace Dominio.Core.Servicos
 
             return true;
         }
+        public bool setStatus(Agendamento agendamento, EStatusDeAgendamento status)
+        {
+            if (agendamento == null)
+            {
+                throw new ArgumentNullException("agendamento");
+            }
 
+            agendamento.Status = status;
+            repAgendamento.incluirStatus(agendamento);
+            return true;
+        }
 
     }
 }

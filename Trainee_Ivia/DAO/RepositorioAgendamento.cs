@@ -25,6 +25,12 @@ namespace DAO
             _ctx.SaveChanges();
         }
 
+        public void incluirStatus(Agendamento agendamento)
+        {
+            if (agendamento == null) throw new ArgumentNullException("Agendamento");
+            _ctx.SaveChanges();
+        }
+
         public List<Agendamento> obterAgendamentos()
         {   
             return _ctx.Agendamentos.OrderByDescending(a => a.DiaDoAgendamento).Take(100).ToList();

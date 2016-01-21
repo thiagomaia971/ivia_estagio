@@ -92,5 +92,10 @@ namespace Dominio.Testes
         {
             throw new NotImplementedException();
         }
+
+        public void incluirStatus(Agendamento agendamento)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

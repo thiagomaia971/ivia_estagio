@@ -101,7 +101,7 @@ namespace MVC.ViewModel
         private void CancelarAgendamento()
         {
             AgendamentoManager agendamentoManager = new AgendamentoManager();
-            agendamentoManager.getAgendamento(CancelAgendamento).Status = EStatusDeAgendamento.Cancelado;
+            agendamentoManager.setStatus(agendamentoManager.getAgendamento(CancelAgendamento));
         }
 
         private void salvarAgendamento()

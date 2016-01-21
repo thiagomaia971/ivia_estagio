@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-
+    var protocolo;
+    var data;
     $("[data-row-action]").on("click", function (e) {
         e.preventDefault();
 
@@ -8,19 +9,32 @@
         switch ($("#EventCommand").val()) {
            
             case "cancelar":
-                var protocolo = $(this).attr("data-row-protocol");
-                var data = $(this).attr("data-row-date");
+                
+                protocolo = $(this).attr("data-row-protocol");
+                data = $(this).attr("data-row-date");
 
-                alert(protocolo + " " + data);
-                $('#CancelAgendamento_Paciente_Protocolo').val(protocolo);
-                $('#CancelAgendamento_DiaDoAgendamentos').val(data);
-                //alert($(this).attr("data-row-agendamento"))
+                $("#modal-confirmation").modal('show');
+
+                break;
+            case "reinserir":
+
                 break;
 
+                default:
+                    $("form").submit();
         }
 
-        $("form").submit();
 
     });
+    $("[data-confirmation]").on("click", function (e) {
+
+        $('#CancelAgendamento_Paciente_Protocolo').val(protocolo);
+        $('#CancelAgendamento_DiaDoAgendamento').val(data);
+
+        $("#modal-confirmation").modal('hide');
+
+        $("form").submit();
+    });
+    
 
 });

@@ -105,3 +105,6 @@ body{
 .panel-lightgreen > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #9ACD32;
 }
+[data-row-status="Cancelado"]{
+    background-color:gray;
+}
