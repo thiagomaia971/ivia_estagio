@@ -65,7 +65,8 @@ body{
 
 
 .labels{
-    font-size: 1.9em;
+    font-size: 1em;
+    color:black;
 }
 
 
@@ -105,6 +106,17 @@ body{
 .panel-lightgreen > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #9ACD32;
 }
+
 [data-row-status="Cancelado"]{
     background-color:gray;
+    opacity:0.6;
+    color:black;
+}
+
+[data-row-status="Realizado"]{
+    background-color: greenyellow;
+}
+
+[data-row-status="Faltado"]{
+    background-color: orangered;
 }

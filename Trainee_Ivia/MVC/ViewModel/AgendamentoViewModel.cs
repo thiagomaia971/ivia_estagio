@@ -13,8 +13,9 @@ namespace MVC.ViewModel
         public List<Agendamento> ListaDeAgendamento { get; set; }
         public Agendamento SearchEntity { get; set; }
         public Agendamento NovoAgendamento { get; set; }
-        public Agendamento CancelAgendamento { get; set; }
+        public Agendamento AtualizarAgendamento { get; set; }
         public String NameOrProtocol { get; set; }
+        public int statusAtualizarAgendamento { get; set; }
 
         public string EventCommand { get; set; }
         public string Mode { get; set; }
@@ -28,9 +29,9 @@ namespace MVC.ViewModel
             SearchEntity = new Agendamento();
             NovoAgendamento = new Agendamento();
             NovoAgendamento.DiaDoAgendamento = new DateTime();
-            CancelAgendamento = new Agendamento();
-            CancelAgendamento.DiaDoAgendamento = new DateTime();
-            CancelAgendamento.Paciente = new Paciente();
+            AtualizarAgendamento = new Agendamento();
+            AtualizarAgendamento.DiaDoAgendamento = new DateTime();
+            AtualizarAgendamento.Paciente = new Paciente();
             SearchEntity.Paciente = new Paciente();
 
             Start();
@@ -92,16 +93,43 @@ namespace MVC.ViewModel
                     salvarAgendamento();
                     break;
 
+                case "reagendar":
                 case "cancelar":
-                    CancelarAgendamento();
+                    AtualizarStatus();
                     break;                    
             }
         }
 
-        private void CancelarAgendamento()
+        private void AtualizarStatus()
         {
             AgendamentoManager agendamentoManager = new AgendamentoManager();
-            agendamentoManager.setStatus(agendamentoManager.getAgendamento(CancelAgendamento));
+
+            Agendamento agendamentoAtualizado = agendamentoManager.getAgendamento(AtualizarAgendamento);
+            switch (statusAtualizarAgendamento)
+            {
+                case 0:
+                    agendamentoAtualizado.Status = EStatusDeAgendamento.Opcao;
+                    break;
+
+                case 1:
+                    agendamentoAtualizado.Status = EStatusDeAgendamento.Normal;
+                    break;
+
+                case 2:
+                    agendamentoAtualizado.Status = EStatusDeAgendamento.Cancelado;
+                    break;
+
+                case 3:
+                    agendamentoAtualizado.Status = EStatusDeAgendamento.Faltado;
+                    break;
+
+                case 4:
+                    agendamentoAtualizado.Status = EStatusDeAgendamento.Realizado;
+                    break;
+            }
+
+            agendamentoManager.setStatus(agendamentoAtualizado);
+            GetAgendamentos();
         }
 
         private void salvarAgendamento()

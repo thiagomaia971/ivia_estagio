@@ -103,7 +103,7 @@ namespace DAO
         }
         public void setStatus(Agendamento agendamento)
         {
-           servicoAgendamento.setStatus(agendamento, EStatusDeAgendamento.Cancelado);
+           servicoAgendamento.setStatus(agendamento);
         }
     }
 

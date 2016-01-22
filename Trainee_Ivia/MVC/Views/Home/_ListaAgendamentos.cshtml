@@ -16,51 +16,103 @@
 
 
 @helper montarRow(Agendamento agendamento)
-{ 
-           
-    <tr class="hover-row-color" data-row-status=agendamento.Status>
-        <td class="hover-row-text protocolo">agendamento.Paciente.Protocolo</td>
-        <td class="hover-row-text">agendamento.Paciente.Nome</td>
+{
+    <tr class="hover-row-color labels" data-row-status=@agendamento.Status>
+        <td class="hover-row-text protocolo labels">@agendamento.Paciente.Protocolo</td>
+        <td class="hover-row-text labels">@agendamento.Paciente.Nome</td>
 
-        if (((int)agendamento.Status) == 1)
+        @if(agendamento.DiaDoAgendamento.CompareTo(DateTime.Now) >= 0)
         {
-            <td data-row-action="cancelar"
-                data-row-protocol=agendamento.Paciente.Protocolo
-                data-row-date=agendamento.DiaDoAgendamento>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </td>
+            switch ((int)agendamento.Status)
+            {
+
+                case 0:
+
+                    break;
+
+
+                case 1:
+                    <td data-row-action="cancelar"
+                        data-row-protocol=@agendamento.Paciente.Protocolo
+                        data-row-date=@agendamento.DiaDoAgendamento>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </td>
+                    break;
+
+                case 2:
+                    <td data-row-action="reagendar"
+                        data-row-protocol=@agendamento.Paciente.Protocolo
+                        data-row-date=@agendamento.DiaDoAgendamento>
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                    </td>
+                    break;
+
+                case 3:
+                    <td data-row-protocol="@agendamento.Paciente.Protocolo"
+                        data-row-date="@agendamento.DiaDoAgendamento">
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </td>
+                    break;
+                case 4:
+                    <td data-row-action="realizado"
+                        data-row-protocol="@agendamento.Paciente.Protocolo"
+                        data-row-date="@agendamento.DiaDoAgendamento">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    </td>
+                    break;
+            }
         }
-        else if (((int)agendamento.Status) == 2)
+        else
         {
-            if (agendamento.DiaDoAgendamento.Date.CompareTo(DateTime.Today.Date) >= 0)
+            switch ((int)agendamento.Status)
             {
-                <td data-row-action="reagendar"
-                    data-row-protocol=agendamento.Paciente.Protocolo
-                    data-row-date=agendamento.DiaDoAgendamento>
-                    <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-                </td>
-            }
-            else
-            {
-                <td></td>
+
+                case 0:
+
+                    break;
+                    
+
+                case 3:
+                    <td data-row-protocol="@agendamento.Paciente.Protocolo"
+                        data-row-date="@agendamento.DiaDoAgendamento">
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </td>
+                    break;
+                case 4:
+                    <td data-row-action="realizado"
+                        data-row-protocol="@agendamento.Paciente.Protocolo"
+                        data-row-date="@agendamento.DiaDoAgendamento">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    </td>
+                    break;
+
+                default:
+                    <td data-row-protocol="@agendamento.Paciente.Protocolo"
+                        data-row-date="@agendamento.DiaDoAgendamento">
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </td>
+                    break;
             }
         }
-                                    
     </tr>
-    
 }
 
 <!-- CONFIRMATION BLOCK-->
 <div id="modal-confirmation" class="modal fade" role="dialog">
     <div class="modal-dialog modal-sm">
-
-        <!-- Modal Opção Agendamento -->
         <div class="modal-content">
 
-
-            <div class="modal-body">
+            <!-- Modal Cancelar Agendamento -->
+            <div id="modal-cancelar-agendamento" class="modal-body">
                 <h4>
                     Tem certeza que deseja cancelar o agendamento?
+                </h4>
+            </div>
+
+            <!-- Modal Reagendar -->
+            <div id="modal-reagendar-agendamento" class="modal-body">
+                <h4>
+                    Tem certeza que deseja reagendar?
                 </h4>
             </div>
 
@@ -88,7 +140,7 @@
                 <label for="InputData" class="panel-tittle">Quimioterapia Dia</label>
             </div>
 
-            <table class="table table-responsive table-bordered ">
+            <table class="table table-responsive table-bordered labels">
                 <thead>
                     <tr>
                         <th>Protocolo</th>
@@ -105,7 +157,7 @@
                             if ((int)agendamento.TipoDeTratamento == 1)
                             {
                                 total_qt_dia++;
-                                montarRow(agendamento);
+                                @montarRow(agendamento);
                             }
                         }
                     }
@@ -142,15 +194,7 @@
                             if ((int)agendamento.TipoDeTratamento == 2)
                             {
                                 total_qt_seq++;
-                                <tr class="hover-row-color" data-row-status=@agendamento.Status>
-                                    <td class="hover-row-text protocolo">@agendamento.Paciente.Protocolo</td>
-                                    <td class="hover-row-text">@agendamento.Paciente.Nome</td>
-                                    <td data-row-action="cancelar"
-                                        data-row-protocol=@agendamento.Paciente.Protocolo
-                                        data-row-date=@agendamento.DiaDoAgendamento>
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </td>
-                                </tr>
+                                @montarRow(agendamento)
                             }
                         }
                     }
@@ -186,15 +230,7 @@
                             if ((int)agendamento.TipoDeTratamento == 4)
                             {
                                 total_intercorrencia++;
-                                <tr class="hover-row-color" data-row-status=@agendamento.Status>
-                                    <td class="hover-row-text protocolo">@agendamento.Paciente.Protocolo</td>
-                                    <td class="hover-row-text">@agendamento.Paciente.Nome</td>
-                                    <td data-row-action="cancelar"
-                                        data-row-protocol=@agendamento.Paciente.Protocolo
-                                        data-row-date=@agendamento.DiaDoAgendamento>
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </td>
-                                </tr>
+                                @montarRow(agendamento)
                             }
                         }
                     }
@@ -230,15 +266,7 @@
                             if ((int)agendamento.TipoDeTratamento == 3)
                             {
                                 total_procedimento++;
-                                <tr class="hover-row-color" data-row-status=@agendamento.Status>
-                                    <td class="hover-row-text protocolo">@agendamento.Paciente.Protocolo</td>
-                                    <td class="hover-row-text">@agendamento.Paciente.Nome</td>
-                                    <td data-row-action="cancelar"
-                                        data-row-protocol=@agendamento.Paciente.Protocolo
-                                        data-row-date=@agendamento.DiaDoAgendamento>
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </td>
-                                </tr>
+                                @montarRow(agendamento)
                             }
                         }
                     }

@@ -18,13 +18,14 @@
     @Html.HiddenFor(a => a.EventCommand)
     @Html.HiddenFor(a => a.Mode)
     @Html.HiddenFor(a => a.NovoAgendamento.Paciente.Protocolo)
-    @Html.HiddenFor(a => a.CancelAgendamento.Paciente.Protocolo);
-    @Html.HiddenFor(a => a.CancelAgendamento.DiaDoAgendamento);
+    @Html.HiddenFor(a => a.AtualizarAgendamento.Paciente.Protocolo);
+    @Html.HiddenFor(a => a.AtualizarAgendamento.DiaDoAgendamento);
+    @Html.HiddenFor(a => a.statusAtualizarAgendamento);
     @Html.HiddenFor(a => a.isValid)
     <!-- END HIDDEN BLOCK-->
 
 
-    <!-- Modals -->
+    @*<!-- Modals -->
     <div id="modal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-sm">
 
@@ -84,7 +85,7 @@
         </div>
 
     </div>
-    <!-- END Modals -->
+    <!-- END Modals -->*@
 
 
     <!-- BEGIN SEARCH BLOCK -->
