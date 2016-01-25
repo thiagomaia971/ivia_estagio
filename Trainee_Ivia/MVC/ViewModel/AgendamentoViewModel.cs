@@ -11,14 +11,19 @@ namespace MVC.ViewModel
     {
 
         public List<Agendamento> ListaDeAgendamento { get; set; }
+        public List<Paciente> ListaDePacientes { get; set; }
+
         public Agendamento SearchEntity { get; set; }
         public Agendamento NovoAgendamento { get; set; }
         public Agendamento AtualizarAgendamento { get; set; }
+        public ETipoDeTratamento test { get; set; }
+
         public String NameOrProtocol { get; set; }
         public int statusAtualizarAgendamento { get; set; }
 
         public string EventCommand { get; set; }
         public string Mode { get; set; }
+
         public bool isValid { get; set; }
         public bool IsListMode { get; set; }
         public bool IsAgendamentoMode { get; set; }
@@ -26,12 +31,19 @@ namespace MVC.ViewModel
         public AgendamentoViewModel()
         {
             ListaDeAgendamento = new List<Agendamento>();
+            ListaDePacientes = new List<Paciente>();
+
             SearchEntity = new Agendamento();
+            //SearchEntity.DiaDoAgendamento = DateTime.Now;
+
             NovoAgendamento = new Agendamento();
             NovoAgendamento.DiaDoAgendamento = new DateTime();
+            NovoAgendamento.Paciente = new Paciente();
+
             AtualizarAgendamento = new Agendamento();
             AtualizarAgendamento.DiaDoAgendamento = new DateTime();
             AtualizarAgendamento.Paciente = new Paciente();
+
             SearchEntity.Paciente = new Paciente();
 
             Start();
@@ -41,6 +53,8 @@ namespace MVC.ViewModel
         {
             EventCommand = "Lista";
 
+            IsAgendamentoMode = false;
+            IsListMode = true;
             isValid = true;
         }
 
@@ -59,6 +73,22 @@ namespace MVC.ViewModel
             }
             AgendamentoManager agendamentoManager = new AgendamentoManager();
             ListaDeAgendamento = agendamentoManager.GetAgendamentos(SearchEntity);
+        }
+        public void GetPacientes()
+        {
+            if (!String.IsNullOrEmpty(NameOrProtocol))
+            {
+                if (isProtocol(NameOrProtocol))
+                {
+                    SearchEntity.Paciente.Protocolo = NameOrProtocol;
+                }
+                else
+                {
+                    SearchEntity.Paciente.Nome = NameOrProtocol;
+                }
+            }
+            PacienteManager pacienteManager = new PacienteManager();
+            ListaDePacientes = pacienteManager.getPacientes(SearchEntity.Paciente);
         }
 
         private bool isProtocol(String np)
@@ -81,6 +111,8 @@ namespace MVC.ViewModel
             {
                 case "lista":
                 case "pesquisar":
+                    IsAgendamentoMode = false;
+                    IsListMode = true;
                     GetAgendamentos();
 
                     break;
@@ -90,13 +122,21 @@ namespace MVC.ViewModel
                     break;
 
                 case "salvar":
+                    IsAgendamentoMode = false;
+                    IsListMode = true;
                     salvarAgendamento();
                     break;
 
                 case "reagendar":
                 case "cancelar":
                     AtualizarStatus();
-                    break;                    
+                    break;
+
+                case "novoagendamento":
+                    IsAgendamentoMode = true;
+                    IsListMode = false;
+                    GetPacientes();
+                    break;
             }
         }
 

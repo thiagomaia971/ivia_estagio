@@ -15,4 +15,5 @@
 /// <reference path="project_scripts/agendamento.js" />
 /// <reference path="project_scripts/agendamento_listaagendamentos.js" />
 /// <reference path="project_scripts/agendamento_modal.js" />
+/// <reference path="project_scripts/agendamento_novoagendamento.js" />
 /// <reference path="respond.js" />

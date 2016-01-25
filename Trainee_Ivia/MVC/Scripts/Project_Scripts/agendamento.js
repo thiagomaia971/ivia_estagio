@@ -1,27 +1,58 @@
 ﻿$(document).ready(function () {
+    $("#novo-agendamento-container").hide();
     
     $("[data-pdsa-action]").on("click", function (e) {
         e.preventDefault();
 
         $("#EventCommand").val($(this).attr("data-pdsa-action"));
-
+        
+        
         switch ($("#EventCommand").val()) {
-            case "salvar":
-                $("#modal").modal('hide');
-                break;
-            case "cancel":
-                cancel_button($(this).attr("data-row-protocol"),$(this).attr("data-row-date"));
+            
+            case "novoAgendamento":
+                novo_agendamento();
                 break;
 
+            case "listar":
+                $("#novo-agendamento-container").hide();
+                $("#list-container").show();
+                break;
+
+            case "imprimir":
+
+                break;
+            default:
+                break;
         }
-      
+
         $("form").submit();
+      
 
     });
 
-    function cancel_button(protocolo, data) {
-        alert(protocolo + " " + data);
-        $('#CancelAgendamento_Paciente_Protocolo').val(protocolo);
-        $('#CancelAgendamento_DiaDoAgendamentos').val(data);
+    function novo_agendamento() {
+        var now = new Date();
+        var day = now.getDate();
+        var month = now.getMonth() + 1;
+        var year = now.getFullYear();
+
+        //alert(day + "/" + month + "/" + year);
+
+        if ($("#SearchEntity_DiaDoAgendamento").val() == "" || $("#NameOrProtocol").val() == "") {
+            //modal data ou nome ou protocolo invalido.
+        } else {
+            var dateAgendamento = new Date($("#SearchEntity_DiaDoAgendamento").val());
+            
+            //if (dateAgendamento.getFullYear <= year && (dateAgendamento.getMonth + 1) <= month ) {
+            //    //modal
+            //    alert("a");
+            //}
+            ////&& dateAgendamento.getDate() <= day
+
+            if (dateAgendamento.getDate < day && (dateAgendamento.getMonth + 1) < month && dateAgendamento.getFullYear < year) {
+                alert("a");                   
+            }
+        }
     }
+
 });

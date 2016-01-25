@@ -19,16 +19,24 @@ namespace DAO
 
         public Paciente obterPaciente(string protocolo)
         {
+            if (String.IsNullOrEmpty(protocolo))
+            {
+                throw new ArgumentNullException("protocolo");
+            }
             return _ctx.Pacientes.Where(p => p.Protocolo.Contains(protocolo)).First();
         }
 
-        public IList<Paciente> obterPacientes()
+        public List<Paciente> obterPacientes()
         {
-            return _ctx.Pacientes.ToList();
+            return _ctx.Pacientes.Take(100).ToList();
         }
 
-        public IList<Paciente> obterPacientes(string nome)
+        public List<Paciente> obterPacientes(string nome)
         {
+            if (String.IsNullOrEmpty(nome))
+            {
+                throw new ArgumentNullException("nome");
+            }
             return _ctx.Pacientes.Where(p => p.Nome.Contains(nome)).ToList();
         }
     }

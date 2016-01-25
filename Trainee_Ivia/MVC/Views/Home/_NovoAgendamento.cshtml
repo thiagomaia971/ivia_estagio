@@ -1,0 +1,93 @@
+﻿@model MVC.ViewModel.AgendamentoViewModel
+@Scripts.Render("~/Scripts/Project_Scripts/agendamento_NovoAgendamento.js")
+
+
+
+<div id="novo-agendamento-container" class="panel panel-lightgreen">
+
+    <div class="panel-heading">
+        Novo Agendamento
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-group col-md-6 col-md-offset-3">
+                @Html.TextBoxFor(aVM => aVM.NovoAgendamento.DiaDoAgendamento, new { @type = "date", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class=" row">
+            
+            <div class="form-group col-md-6 col-md-offset-3">
+            
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Selecionar</th>
+                                <th>Protocolo</th>
+                                <th>Nome</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach( var p in Model.ListaDePacientes)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.RadioButtonFor(model => model.NovoAgendamento.Paciente.Protocolo, p.Protocolo)
+                                    </td>
+
+                                    <td>
+                                        @p.Protocolo
+                                    </td>
+
+                                    <td>
+                                        @p.Nome
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="form-group col-md-6 col-md-offset-3">
+                @Html.Label("Tipo de Tratamento")
+                @Html.DropDownListFor(m => m.test, new[] {
+                        new SelectListItem() { Text = "Escolha uma opção...", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Opcao).ToString(), Selected = true, Disabled = true },
+                        new SelectListItem() { Text = "Quimioterapia Dia", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Quimioterapia_Dia).ToString() },
+                        new SelectListItem() { Text = "Quimioterapia Sequencial", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Quimioterapia_Sequencial).ToString() },
+                        new SelectListItem() { Text = "Procedimento", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Procedimento).ToString()},
+                        new SelectListItem() { Text = "Intercorrencia", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Intercorrencia).ToString() }
+                        }, new { @class = "form-control" })
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="panel-footer">
+        <div class="row">
+
+            <div class="form-group">
+
+                <button id="btnSalvar" class="btn btn-success col-md-3 col-md-offset-2" data-na-action="salvar">
+                    <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+                </button>
+        
+                <button id="btnCancelar" class="btn btn-danger col-md-3 col-md-offset-2" data-na-action="lista">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancelar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

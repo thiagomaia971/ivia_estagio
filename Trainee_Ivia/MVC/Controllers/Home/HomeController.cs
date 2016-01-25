@@ -35,6 +35,11 @@ namespace MVC.Controllers
            
             if (Request.IsAjaxRequest())
             {
+                if (agendamentoVM.IsAgendamentoMode)
+                {
+                    return PartialView("_NovoAgendamento", agendamentoVM);
+                }
+
                 return PartialView("_ListaAgendamentos", agendamentoVM);
             }
             

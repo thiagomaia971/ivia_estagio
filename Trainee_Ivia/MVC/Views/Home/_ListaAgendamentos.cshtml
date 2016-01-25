@@ -21,11 +21,11 @@
         <td class="hover-row-text protocolo labels">@agendamento.Paciente.Protocolo</td>
         <td class="hover-row-text labels">@agendamento.Paciente.Nome</td>
 
-        @if(agendamento.DiaDoAgendamento.CompareTo(DateTime.Now) >= 0)
+        @if (agendamento.DiaDoAgendamento.Date.CompareTo(DateTime.Now.Date) >= 0)
         {
             switch ((int)agendamento.Status)
             {
-
+                
                 case 0:
 
                     break;
@@ -70,7 +70,13 @@
                 case 0:
 
                     break;
-                    
+
+                case 1:
+                    <td data-row-protocol="@agendamento.Paciente.Protocolo"
+                        data-row-date="@agendamento.DiaDoAgendamento">
+                        @*<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>*@
+                    </td>
+                    break;
 
                 case 3:
                     <td data-row-protocol="@agendamento.Paciente.Protocolo"
@@ -78,6 +84,7 @@
                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                     </td>
                     break;
+
                 case 4:
                     <td data-row-action="realizado"
                         data-row-protocol="@agendamento.Paciente.Protocolo"
@@ -130,152 +137,154 @@
 </div>
 
 <!-- END CONFIRMATION BLOCK-->
+<div id="list-container" class="panel panel-lightgreen">
 
-<div class="panel-body">
+    <div class="panel-body">
 
-    <div id="tab_qt_dia" class="col-lg-3">
-        <div class=" panel panel-warning">
+        <div id="tab_qt_dia" class="col-lg-3">
+            <div class=" panel panel-warning">
 
-            <div class="panel-heading">
-                <label for="InputData" class="panel-tittle">Quimioterapia Dia</label>
-            </div>
+                <div class="panel-heading">
+                    <label for="InputData" class="panel-tittle">Quimioterapia Dia</label>
+                </div>
 
-            <table class="table table-responsive table-bordered labels">
-                <thead>
-                    <tr>
-                        <th>Protocolo</th>
-                        <th>Nome do Paciente</th>
-                    </tr>
-                </thead>
+                <table class="table table-responsive table-bordered labels">
+                    <thead>
+                        <tr>
+                            <th>Protocolo</th>
+                            <th>Nome do Paciente</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    @{
-                        int total_qt_dia = 0;
-                        foreach (var agendamento in Model.ListaDeAgendamento)
-                        {
-
-                            if ((int)agendamento.TipoDeTratamento == 1)
+                    <tbody>
+                        @{
+                            int total_qt_dia = 0;
+                            foreach (var agendamento in Model.ListaDeAgendamento)
                             {
-                                total_qt_dia++;
-                                @montarRow(agendamento);
+
+                                if ((int)agendamento.TipoDeTratamento == 1)
+                                {
+                                    total_qt_dia++;
+                                    @montarRow(agendamento);
+                                }
                             }
                         }
-                    }
-                </tbody>
-            </table>
-            <div class="panel-footer">
-                <label for="InputData" class="panel-footer">Total: @total_qt_dia</label>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="tab_qt_seq" class="col-lg-3">
-        <div class=" panel panel-success">
-
-            <div class="panel-heading">
-                <label for="InputData" class="panel-tittle">Quimioterapia Sequencial</label>
-            </div>
-
-            <table class="table table-responsive table-bordered ">
-                <thead>
-                    <tr>
-                        <th>Protocolo</th>
-                        <th>Nome do Paciente</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @{
-                        int total_qt_seq = 0;
-                        foreach (var agendamento in Model.ListaDeAgendamento)
-                        {
-
-                            if ((int)agendamento.TipoDeTratamento == 2)
-                            {
-                                total_qt_seq++;
-                                @montarRow(agendamento)
-                            }
-                        }
-                    }
-                </tbody>
-            </table>
-            <div class="panel-footer">
-                <label for="InputData" class="panel-footer">Total: @total_qt_seq</label>
-            </div>
-        </div>
-    </div>
-
-    <div id="tab_intercorrencia" class="col-lg-3">
-        <div class=" panel panel-danger">
-
-            <div class="panel-heading">
-                <label for="InputData" class="panel-tittle">Intercorrência</label>
-            </div>
-
-            <table class="table table-responsive table-bordered ">
-                <thead>
-                    <tr>
-                        <th>Protocolo</th>
-                        <th>Nome do Paciente</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @{
-                        int total_intercorrencia = 0;
-                        foreach (var agendamento in Model.ListaDeAgendamento)
-                        {
-
-                            if ((int)agendamento.TipoDeTratamento == 4)
-                            {
-                                total_intercorrencia++;
-                                @montarRow(agendamento)
-                            }
-                        }
-                    }
-                </tbody>
-            </table>
-            <div class="panel-footer">
-                <label for="InputData" class="panel-footer">Total: @total_intercorrencia</label>
-            </div>
-        </div>
-    </div>
-
-    <div id="tab_procedimento" class="col-lg-3">
-        <div class=" panel panel-info">
-
-            <div class="panel-heading">
-                <label for="InputData" class="panel-tittle">Procedimento</label>
-            </div>
-
-            <table class="table table-responsive table-bordered ">
-                <thead>
-                    <tr>
-                        <th>Protocolo</th>
-                        <th>Nome do Paciente</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @{
-                        int total_procedimento = 0;
-                        foreach (var agendamento in Model.ListaDeAgendamento)
-                        {
-
-                            if ((int)agendamento.TipoDeTratamento == 3)
-                            {
-                                total_procedimento++;
-                                @montarRow(agendamento)
-                            }
-                        }
-                    }
-                </tbody>
-            </table>
-            <div class="panel-footer">
-                <label for="InputData" class="panel-footer">Total: @total_procedimento</label>
+                    </tbody>
+                </table>
+                <div class="panel-footer">
+                    <label for="InputData" class="panel-footer">Total: @total_qt_dia</label>
+                </div>
             </div>
         </div>
 
+
+        <div id="tab_qt_seq" class="col-lg-3">
+            <div class=" panel panel-success">
+
+                <div class="panel-heading">
+                    <label for="InputData" class="panel-tittle">Quimioterapia Sequencial</label>
+                </div>
+
+                <table class="table table-responsive table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>Protocolo</th>
+                            <th>Nome do Paciente</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            int total_qt_seq = 0;
+                            foreach (var agendamento in Model.ListaDeAgendamento)
+                            {
+
+                                if ((int)agendamento.TipoDeTratamento == 2)
+                                {
+                                    total_qt_seq++;
+                                    @montarRow(agendamento)
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div class="panel-footer">
+                    <label for="InputData" class="panel-footer">Total: @total_qt_seq</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab_intercorrencia" class="col-lg-3">
+            <div class=" panel panel-danger">
+
+                <div class="panel-heading">
+                    <label for="InputData" class="panel-tittle">Intercorrência</label>
+                </div>
+
+                <table class="table table-responsive table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>Protocolo</th>
+                            <th>Nome do Paciente</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            int total_intercorrencia = 0;
+                            foreach (var agendamento in Model.ListaDeAgendamento)
+                            {
+
+                                if ((int)agendamento.TipoDeTratamento == 4)
+                                {
+                                    total_intercorrencia++;
+                                    @montarRow(agendamento)
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div class="panel-footer">
+                    <label for="InputData" class="panel-footer">Total: @total_intercorrencia</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab_procedimento" class="col-lg-3">
+            <div class=" panel panel-info">
+
+                <div class="panel-heading">
+                    <label for="InputData" class="panel-tittle">Procedimento</label>
+                </div>
+
+                <table class="table table-responsive table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>Protocolo</th>
+                            <th>Nome do Paciente</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            int total_procedimento = 0;
+                            foreach (var agendamento in Model.ListaDeAgendamento)
+                            {
+
+                                if ((int)agendamento.TipoDeTratamento == 3)
+                                {
+                                    total_procedimento++;
+                                    @montarRow(agendamento)
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div class="panel-footer">
+                    <label for="InputData" class="panel-footer">Total: @total_procedimento</label>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>

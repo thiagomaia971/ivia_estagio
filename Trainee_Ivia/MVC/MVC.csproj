@@ -315,6 +315,7 @@
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <Content Include="Scripts\Project_Scripts\agendamento_ListaAgendamentos.js" />
+    <Content Include="Scripts\Project_Scripts\agendamento_NovoAgendamento.js" />
     <Content Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\msvcr90.dll" />
     <Content Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\README_ENU.txt" />
     <Content Include="_bin_deployableAssemblies\x86\sqlceca40.dll" />
@@ -365,6 +366,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js.map" />
     <Content Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <Content Include="Views\Home\_Modal.cshtml" />
+    <Content Include="Views\Home\_NovoAgendamento.cshtml" />
+    <Content Include="Views\Home\_partials.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

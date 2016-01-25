@@ -1,0 +1,14 @@
+﻿@model MVC.ViewModel.AgendamentoViewModel
+
+<!-- LIST BLOCK-->
+
+@if (Model.IsListMode)
+{
+    @Html.Partial("_ListaAgendamentos", Model)
+}
+<!-- END LIST BLOCK-->
+
+@if (Model.IsAgendamentoMode)
+{
+    @Html.Partial("_NovoAgendamento", Model)
+}
