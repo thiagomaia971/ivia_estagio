@@ -16,7 +16,9 @@
 
         $("#EventCommand").val($(this).attr("data-na-action"));
 
-        $("form").submit();
+        //if($(this).attr("data-na-action")
+
+        $("#novoAgendamentoForm").submit();
     });
 });
 

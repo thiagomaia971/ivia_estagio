@@ -10,7 +10,7 @@
         switch ($("#EventCommand").val()) {
             
             case "novoAgendamento":
-                novo_agendamento();
+                //novo_agendamento();
                 break;
 
             case "listar":
@@ -25,7 +25,7 @@
                 break;
         }
 
-        $("form").submit();
+        $("#form0").submit();
       
 
     });

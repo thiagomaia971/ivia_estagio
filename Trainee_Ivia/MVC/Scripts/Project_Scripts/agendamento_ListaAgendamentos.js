@@ -36,13 +36,14 @@
                 break;
 
                 default:
-                    $("form").submit();
+                    $("#form0").submit();
                     break;
         }
 
 
     });
     $("[data-confirmation]").on("click", function (e) {
+
         $("#statusAtualizarAgendamento").val(statusAgendamento);
         $('#AtualizarAgendamento_Paciente_Protocolo').val(protocolo);
         $('#AtualizarAgendamento_DiaDoAgendamento').val(data);
@@ -50,7 +51,7 @@
 
         $("#modal-confirmation").modal('hide');
 
-        $("form").submit();
+        $("#form0").submit();
     });
     
 

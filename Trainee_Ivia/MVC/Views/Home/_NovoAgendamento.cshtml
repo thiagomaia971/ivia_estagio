@@ -1,25 +1,25 @@
 ﻿@model MVC.ViewModel.AgendamentoViewModel
 @Scripts.Render("~/Scripts/Project_Scripts/agendamento_NovoAgendamento.js")
 
+@*@using (Html.BeginForm(null, null, new { Id = "novoAgendamentoForm" }, FormMethod.Post)){*@
+<form id="" action="/Home/Index/novoAgendamentoForm" method="post">
+    <div id="novo-agendamento-container" class="panel panel-lightgreen">
 
-
-<div id="novo-agendamento-container" class="panel panel-lightgreen">
-
-    <div class="panel-heading">
-        Novo Agendamento
-    </div>
-
-    <div class="panel-body">
-        <div class="row">
-            <div class="form-group col-md-6 col-md-offset-3">
-                @Html.TextBoxFor(aVM => aVM.NovoAgendamento.DiaDoAgendamento, new { @type = "date", @class = "form-control" })
-            </div>
+        <div class="panel-heading">
+            Novo Agendamento
         </div>
 
-        <div class=" row">
-            
-            <div class="form-group col-md-6 col-md-offset-3">
-            
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-md-6 col-md-offset-3">
+                    @Html.TextBoxFor(aVM => aVM.NovoAgendamento.DiaDoAgendamento, new { @type = "date", @class = "form-control" })
+                </div>
+            </div>
+
+            <div class=" row">
+
+                <div class="form-group col-md-6 col-md-offset-3">
+
                     <table class="table table-responsive table-bordered">
                         <thead>
                             <tr>
@@ -30,11 +30,11 @@
                         </thead>
 
                         <tbody>
-                            @foreach( var p in Model.ListaDePacientes)
+                            @foreach (var p in Model.ListaDePacientes)
                             {
                                 <tr>
                                     <td>
-                                        @Html.RadioButtonFor(model => model.NovoAgendamento.Paciente.Protocolo, p.Protocolo)
+                                        @Html.RadioButtonFor(m => m.NovoAgendamento.Paciente.Protocolo, p.Protocolo)
                                     </td>
 
                                     <td>
@@ -50,44 +50,48 @@
 
                     </table>
 
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col-md-6 col-md-offset-3">
+                    @Html.Label("Tipo de Tratamento")
+                    @Html.DropDownListFor(m => m.NovoAgendamento.TipoDeTratamento, new[] {
+                            new SelectListItem() { Text = "Escolha uma opção...", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Opcao).ToString(), Selected = true, Disabled = true },
+                            new SelectListItem() { Text = "Quimioterapia Dia", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Quimioterapia_Dia).ToString() },
+                            new SelectListItem() { Text = "Quimioterapia Sequencial", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Quimioterapia_Sequencial).ToString() },
+                            new SelectListItem() { Text = "Procedimento", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Procedimento).ToString()},
+                            new SelectListItem() { Text = "Intercorrencia", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Intercorrencia).ToString() }
+                            }, new { @class = "form-control" })
+                </div>
+
             </div>
 
         </div>
 
-        <div class="row">
+        <div class="panel-footer">
+            <div class="row">
 
-            <div class="form-group col-md-6 col-md-offset-3">
-                @Html.Label("Tipo de Tratamento")
-                @Html.DropDownListFor(m => m.test, new[] {
-                        new SelectListItem() { Text = "Escolha uma opção...", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Opcao).ToString(), Selected = true, Disabled = true },
-                        new SelectListItem() { Text = "Quimioterapia Dia", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Quimioterapia_Dia).ToString() },
-                        new SelectListItem() { Text = "Quimioterapia Sequencial", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Quimioterapia_Sequencial).ToString() },
-                        new SelectListItem() { Text = "Procedimento", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Procedimento).ToString()},
-                        new SelectListItem() { Text = "Intercorrencia", Value = ((int) Dominio.Core.Entidades.ETipoDeTratamento.Intercorrencia).ToString() }
-                        }, new { @class = "form-control" })
+                <div class="form-group">
+
+                    <button id="btnSalvar" class="btn btn-success col-md-3 col-md-offset-2" data-na-action="salvar">
+                        <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+                    </button>
+
+                    <button id="btnCancelar" class="btn btn-danger col-md-3 col-md-offset-2" data-na-action="lista">
+                        <span class="glyphicon glyphicon-ban-circle"></span> Cancelar
+                    </button>
+
+                </div>
+
             </div>
 
         </div>
 
     </div>
+</form>
 
-    <div class="panel-footer">
-        <div class="row">
 
-            <div class="form-group">
 
-                <button id="btnSalvar" class="btn btn-success col-md-3 col-md-offset-2" data-na-action="salvar">
-                    <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
-                </button>
-        
-                <button id="btnCancelar" class="btn btn-danger col-md-3 col-md-offset-2" data-na-action="lista">
-                    <span class="glyphicon glyphicon-ban-circle"></span> Cancelar
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
