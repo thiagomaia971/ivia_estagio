@@ -14,8 +14,7 @@
     $("[data-na-action]").on("click", function (e) {
         e.preventDefault();
 
-        $("#EventCommand").val($(this).attr("data-na-action"));
-
+        $("#SalvarAgendamento").val($(this).attr("data-na-action"));
         //if($(this).attr("data-na-action")
 
         $("#novoAgendamentoForm").submit();

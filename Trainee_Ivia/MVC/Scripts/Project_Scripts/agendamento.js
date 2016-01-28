@@ -10,47 +10,41 @@
         switch ($("#EventCommand").val()) {
             
             case "novoAgendamento":
-                //novo_agendamento();
+                novo_agendamento();
                 break;
 
-            case "listar":
-                $("#novo-agendamento-container").hide();
-                $("#list-container").show();
-                break;
-
-            case "imprimir":
-
-                break;
+            
             default:
+                $("#form0").submit();
                 break;
         }
 
-        $("#form0").submit();
       
 
     });
 
     function novo_agendamento() {
         var now = new Date();
-        var day = now.getDate();
-        var month = now.getMonth() + 1;
-        var year = now.getFullYear();
 
-        //alert(day + "/" + month + "/" + year);
+        if ($("#SearchEntity_DiaDoAgendamento").val() == "") {
 
-        if ($("#SearchEntity_DiaDoAgendamento").val() == "" || $("#NameOrProtocol").val() == "") {
-            //modal data ou nome ou protocolo invalido.
-        } else {
-            var dateAgendamento = new Date($("#SearchEntity_DiaDoAgendamento").val());
-            
-            //if (dateAgendamento.getFullYear <= year && (dateAgendamento.getMonth + 1) <= month ) {
-            //    //modal
-            //    alert("a");
-            //}
-            ////&& dateAgendamento.getDate() <= day
+            $("#textoModal").text("Preencha a data!");
+            $("#modal-aviso").modal('show');
 
-            if (dateAgendamento.getDate < day && (dateAgendamento.getMonth + 1) < month && dateAgendamento.getFullYear < year) {
-                alert("a");                   
+        } else if ($("#NameOrProtocol").val() == "") {
+
+            $("#textoModal").text("Preencha um nome ou protocolo!");
+            $("#modal-aviso").modal('show');
+
+        }else {
+            var dataAgendamento = new Date($("#SearchEntity_DiaDoAgendamento").val());
+            dataAgendamento.setDate(dataAgendamento.getDate() + 1);
+
+            if (now < dataAgendamento) {
+                $("#form0").submit();
+            } else {                
+                $("#textoModal").text("Não insira uma data passada!");
+                $("#modal-aviso").modal('show');
             }
         }
     }

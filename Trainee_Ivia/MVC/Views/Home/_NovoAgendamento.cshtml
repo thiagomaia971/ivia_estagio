@@ -1,8 +1,11 @@
 ﻿@model MVC.ViewModel.AgendamentoViewModel
 @Scripts.Render("~/Scripts/Project_Scripts/agendamento_NovoAgendamento.js")
 
-@*@using (Html.BeginForm(null, null, new { Id = "novoAgendamentoForm" }, FormMethod.Post)){*@
-<form id="" action="/Home/Index/novoAgendamentoForm" method="post">
+
+<form id="novoAgendamentoForm" action="/Home/Index/novoAgendamentoForm" method="post">
+
+    @Html.HiddenFor(a => a.SalvarAgendamento)
+
     <div id="novo-agendamento-container" class="panel panel-lightgreen">
 
         <div class="panel-heading">
@@ -91,6 +94,7 @@
         </div>
 
     </div>
+
 </form>
 
 

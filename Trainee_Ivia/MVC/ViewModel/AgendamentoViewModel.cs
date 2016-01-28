@@ -16,12 +16,12 @@ namespace MVC.ViewModel
         public Agendamento SearchEntity { get; set; }
         public Agendamento NovoAgendamento { get; set; }
         public Agendamento AtualizarAgendamento { get; set; }
-        public ETipoDeTratamento test { get; set; }
 
         public String NameOrProtocol { get; set; }
         public int statusAtualizarAgendamento { get; set; }
 
         public string EventCommand { get; set; }
+        public string SalvarAgendamento { get; set; }
         public string Mode { get; set; }
 
         public bool isValid { get; set; }
@@ -52,6 +52,7 @@ namespace MVC.ViewModel
         private void Start()
         {
             EventCommand = "Lista";
+            SalvarAgendamento = null;
 
             IsAgendamentoMode = false;
             IsListMode = true;
@@ -106,6 +107,11 @@ namespace MVC.ViewModel
 
         public void HandleRequest()
         {
+            if (!String.IsNullOrEmpty(SalvarAgendamento))
+            {
+                EventCommand = SalvarAgendamento;
+            }
+
             Console.WriteLine(EventCommand);
             switch (EventCommand.ToLower())
             {
@@ -147,10 +153,6 @@ namespace MVC.ViewModel
             Agendamento agendamentoAtualizado = agendamentoManager.getAgendamento(AtualizarAgendamento);
             switch (statusAtualizarAgendamento)
             {
-                case 0:
-                    agendamentoAtualizado.Status = EStatusDeAgendamento.Opcao;
-                    break;
-
                 case 1:
                     agendamentoAtualizado.Status = EStatusDeAgendamento.Normal;
                     break;

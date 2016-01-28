@@ -46,5 +46,15 @@ namespace Dominio.Testes
         {
             return lista.FindAll(p => p.Nome.Equals(nome));
         }
+
+        List<Paciente> IRepositorioPaciente.obterPacientes(string nome)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Paciente> IRepositorioPaciente.obterPacientes()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

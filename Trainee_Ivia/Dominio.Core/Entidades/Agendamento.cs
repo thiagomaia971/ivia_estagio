@@ -24,7 +24,7 @@ namespace Dominio.Core.Entidades
 
         public Agendamento()
         {
-
+            Status = EStatusDeAgendamento.Normal;
         }
 
         public Agendamento(Paciente paciente, DateTime dia, ETipoDeTratamento tipo)

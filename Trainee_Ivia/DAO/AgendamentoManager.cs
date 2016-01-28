@@ -95,7 +95,7 @@ namespace DAO
             }
             else
             {
-                if (agendamento.DiaDoAgendamento.CompareTo(DateTime.Now) > 0)
+                if (agendamento.DiaDoAgendamento.Date.CompareTo(DateTime.Now.Date) >= 0)
                 {
                     servicoAgendamento.registrarAgendamento(agendamento);
                 }

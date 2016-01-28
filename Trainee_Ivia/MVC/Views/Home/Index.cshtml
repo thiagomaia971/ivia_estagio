@@ -15,16 +15,16 @@
         UpdateTargetId = "partials-container"
     }))
 {
+
     <!-- BEGIN HIDDEN BLOCK -->
     @Html.HiddenFor(a => a.EventCommand)
     @Html.HiddenFor(a => a.Mode)
-    @Html.HiddenFor(a => a.AtualizarAgendamento.Paciente.Protocolo);
-    @Html.HiddenFor(a => a.AtualizarAgendamento.DiaDoAgendamento);
-    @Html.HiddenFor(a => a.statusAtualizarAgendamento);
+    @Html.HiddenFor(a => a.AtualizarAgendamento.Paciente.Protocolo)
+    @Html.HiddenFor(a => a.AtualizarAgendamento.DiaDoAgendamento)
+    @Html.HiddenFor(a => a.statusAtualizarAgendamento)
     @Html.HiddenFor(a => a.isValid)
 
     <!-- END HIDDEN BLOCK-->
-
 
     <!-- BEGIN SEARCH BLOCK -->
     <div id="search-container" class="panel panel-lightgreen">
@@ -87,9 +87,35 @@
     </div>
 
     <!-- END SEARCH BLOCK-->
-    
-    
-    
+
+    <!-- CONFIRMATION BLOCK-->
+    <div id="modal-aviso" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                
+                <div class="modal-body">
+                    <h4 id="textoModal">
+                       
+                    </h4>
+                </div>
+                
+                @*<div id="modal-reagendar-agendamento" class="modal-body">
+                    <h4>
+                        Tem certeza que deseja reagendar?
+                    </h4>
+                </div>*@
+
+                <div class="modal-footer">
+                    <div class="btn btn-success col-md-2  col-md-offset-5" data-dismiss="modal">
+                        Ok
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END CONFIRMATION BLOCK-->
+
 }
 <div id="partials-container" >
 

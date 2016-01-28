@@ -39,7 +39,7 @@ namespace Dominio.Core.Servicos
                 throw new ArgumentNullException("agendamento.Paciente");
             }
 
-            if (agendamento.DiaDoAgendamento.CompareTo(DateTime.Now) <= 0)
+            if (agendamento.DiaDoAgendamento.Date.CompareTo(DateTime.Now.Date) < 0)
             {
                 return false;
             }
